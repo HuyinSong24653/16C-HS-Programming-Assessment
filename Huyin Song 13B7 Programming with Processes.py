@@ -1,30 +1,35 @@
 #Huyin Song, Started on 6/05/2022
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
-from tkinter import*
-root = Tk()
-root.geometry("500x500")
+import tkinter as tk
+window = tk.Tk()
+window.geometry("500x500")
 
 
-lname = Label(root, text = "What is your name?")
-lname.pack()
-lname.place(x = 20, y = 20)
+lbl_verifage = tk.Label(window)
+lbl_verifage.place(x = 150, y = 150)
 
-lage = Label(root, text = "What is your age?")
-lage.pack()
-lage.place(x = 20, y = 60)
-
-ename = Entry(root)
-ename.pack()
-ename.place(x = 150, y = 20)
+def verifyage():
+    if ent_age.get() <= "16":
+        lbl_verifage.config(text = "You are qualified to use my program!")
+    
+    if ent_age.get() > "16":
+        lbl_verifage.config(text = "You are not old enough to qualify")
 
 
-eage = Entry(root)
-eage.pack()
-eage.place(x = 150, y = 60)
+lbl_name = tk.Label(window, text = "What is your name?")
+lbl_name.place(x = 20, y = 20)
 
+lbl_age = tk.Label(window, text = "What is your age?")
+lbl_age.place(x = 20, y = 60)
 
+ent_name = tk.Entry(window)
+ent_name.place(x = 150, y = 20)
 
+ent_age = tk.Entry(window)
+ent_age.place(x = 150, y = 60)
 
+bnt_age = tk.Button(window, text = "Verify your age!", bg = "#67fcd0", command = verifyage)
+bnt_age.place(x = 20, y = 150)
 
-root.mainloop()
+window.mainloop()
