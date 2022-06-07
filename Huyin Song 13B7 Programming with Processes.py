@@ -2,7 +2,6 @@
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import*
-from types import GenericAlias
 
 verification = Tk()
 verification.title("Verifications window")
@@ -12,21 +11,28 @@ lbl_verifage = Label(verification)
 lbl_verifage.place(x = 20, y = 200)
 
 def verifyage():
-    userage = int(ent_age.get())
-    username = str(ent_name.get())
-    if userage >= 16:
-        lbl_verifage.config(text = "You are qualified to use my program!")
-        lbl_welcome = Label(verification, text = "{}, Welcome!".format(username))
-        lbl_welcome.place(x = 20, y = 160)
-        btn_verifproceed.place(x = 100, y = 275)
-    elif userage < 16:
-        lbl_verifage.config(text = "You are not old enough to qualify")
+    try:
+        username = str(ent_name.get())
+        userage = int(ent_age.get())
+        if userage <= 0:
+            lbl_verifage.config(text = "Invalid input! You cannot be 0 or negative years old!")
+        elif userage > 0 and userage < 16:
+            lbl_verifage.config(text = "You are not old enough to qualify!")
+        elif userage >= 16 and userage < 122:
+            lbl_verifage.config(text = "You are qualified to use my program!")
+            lbl_welcome = Label(verification, text = "{}, Welcome!".format(username))
+            lbl_welcome.place(x = 20, y = 160)
+            btn_verifproceed.place(x = 100, y = 275)
+        elif userage >= 122:
+            lbl_verifage.config(text = "Invalid input!\nThe highest recorded age of humans was 122 years old!")
+    except ValueError:
+        lbl_verifage.config(text = "Invalid input! Please input an integer!")
 
 def selection():
+    verification.destroy()
     quizselect = Tk()
     quizselect.title("Quiz topic selecter")
     quizselect.geometry("375x450")
-    verification.destroy()
 
     lbl_quizselectwelcome = Label(quizselect, text = "What topic would you like to be tested on?", font = ("Arial", 11))
     lbl_quizselectwelcome.place(x = 45, y = 30)
@@ -42,20 +48,26 @@ def selection():
     btn_rules.place(x = 25, y = 275)
     btn_driver = Button(quizselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(6))
     btn_driver.place(x = 200, y = 275)
+    btn_sus = Button(quizselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0")
+    if ya == 1:
+        btn_sus.pack()
 
 def quizmode(arg):
     if arg == 1:
-        mode = 1
+        print("general")
     elif arg == 2:
-        mode = 2
+        print("emergencies")    
+        ya = 1
     elif arg == 3:
-        mode = 3
+        print("sus")
     elif arg == 4:
-        mode = 4
+        print("sus")
     elif arg == 5:
-        mode = 5
+        print("sus")
     elif arg == 6:
-        mode = 6
+        print("sus")
+
+ya = NONE
 
 lbl_name = Label(verification, text = "What is your name?")
 lbl_name.place(x = 20, y = 20)
