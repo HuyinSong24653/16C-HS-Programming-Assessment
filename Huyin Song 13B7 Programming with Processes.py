@@ -30,34 +30,34 @@ def verifyage():
 
 def selection():
     verification.destroy()
-    quizselect = Tk()
-    quizselect.title("Quiz topic selecter")
-    quizselect.geometry("375x450")
+    global topicselect
+    topicselect = Tk()
+    topicselect.title("Quiz topic selecter")
+    topicselect.geometry("375x450")
 
-    lbl_quizselectwelcome = Label(quizselect, text = "What topic would you like to be tested on?", font = ("Arial", 11))
+    lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?", font = ("Arial", 11))
     lbl_quizselectwelcome.place(x = 45, y = 30)
-    btn_general = Button(quizselect, text = "General", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(1))
+    btn_general = Button(topicselect, text = "General", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(1))
     btn_general.place(x = 25, y = 85)
-    btn_emergencies = Button(quizselect, text = "Emergencies", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(2))
+    btn_emergencies = Button(topicselect, text = "Emergencies", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(2))
     btn_emergencies.place(x = 200, y = 85)  
-    btn_parking = Button(quizselect, text = "Parking", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(3))
+    btn_parking = Button(topicselect, text = "Parking", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(3))
     btn_parking.place(x = 25, y = 180)
-    btn_road = Button(quizselect, text = "Road", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(4))
+    btn_road = Button(topicselect, text = "Road", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(4))
     btn_road.place(x = 200, y = 180)
-    btn_rules = Button(quizselect, text = "Rules", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(5))
+    btn_rules = Button(topicselect, text = "Rules", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(5))
     btn_rules.place(x = 25, y = 275)
-    btn_driver = Button(quizselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quizmode(6))
+    btn_driver = Button(topicselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(6))
     btn_driver.place(x = 200, y = 275)
-    btn_sus = Button(quizselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0")
-    if ya == 1:
-        btn_sus.pack()
 
-def quizmode(arg):
+    btn_sus = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage)
+    btn_sus.pack()
+
+def quiztopic(arg):
     if arg == 1:
         print("general")
     elif arg == 2:
-        print("emergencies")    
-        ya = 1
+        print("emergencies")
     elif arg == 3:
         print("sus")
     elif arg == 4:
@@ -67,7 +67,22 @@ def quizmode(arg):
     elif arg == 6:
         print("sus")
 
-ya = NONE
+def quizpage():
+    topicselect.destroy()
+    quiz = Tk()
+    quiz.title("Quiz Window")
+    quiz.geometry("750x750")
+
+    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 2)
+    btn_progress.place(x = 25, y = 20)
+    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 2)
+    btn_notes.place(x = 205, y = 20)
+    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 2)
+    btn_hint.place(x = 385, y = 20)
+    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 2)
+    btn_endquiz.place(x = 565, y = 20)
+    lbl_question = Label(quiz, text = "Question here", width = 64, height = 2, font = ("Arial", 15), relief = "groove")
+    lbl_question.place(x = 18, y = 125)
 
 lbl_name = Label(verification, text = "What is your name?")
 lbl_name.place(x = 20, y = 20)
