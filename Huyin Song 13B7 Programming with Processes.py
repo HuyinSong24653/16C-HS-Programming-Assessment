@@ -3,13 +3,6 @@
 
 from tkinter import*
 
-verification = Tk()
-verification.title("Verifications window")
-verification.geometry("350x350")
-
-lbl_verifage = Label(verification)
-lbl_verifage.place(x = 20, y = 200)
-
 def verifyage():
     try:
         username = str(ent_name.get())
@@ -54,18 +47,26 @@ def selection():
     btn_sus.pack()
 
 def quiztopic(arg):
+    global mode
     if arg == 1:
         print("general")
+        mode = 1
     elif arg == 2:
         print("emergencies")
+        mode = 2
     elif arg == 3:
         print("sus")
+        mode = 3
     elif arg == 4:
         print("sus")
+        mode = 4
     elif arg == 5:
         print("sus")
+        mode = 5
     elif arg == 6:
         print("sus")
+        mode = 6
+    selection()
 
 def quizpage():
     topicselect.destroy()
@@ -73,16 +74,23 @@ def quizpage():
     quiz.title("Quiz Window")
     quiz.geometry("750x750")
 
-    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 2)
+    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1)
     btn_progress.place(x = 25, y = 20)
-    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 2)
+    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1)
     btn_notes.place(x = 205, y = 20)
-    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 2)
+    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1)
     btn_hint.place(x = 385, y = 20)
-    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 2)
+    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1)
     btn_endquiz.place(x = 565, y = 20)
     lbl_question = Label(quiz, text = "Question here", width = 64, height = 2, font = ("Arial", 15), relief = "groove")
-    lbl_question.place(x = 18, y = 125)
+    lbl_question.place(x = 18, y = 100)
+
+verification = Tk()
+verification.title("Verifications window")
+verification.geometry("350x350")
+
+lbl_verifage = Label(verification)
+lbl_verifage.place(x = 20, y = 200)
 
 lbl_name = Label(verification, text = "What is your name?")
 lbl_name.place(x = 20, y = 20)
@@ -101,5 +109,83 @@ btn_verifproceed = Button(verification, text = "Proceed with program", bg = "#67
 btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection)
 btn_dev.pack()
 
+General = [
+    ["Who can put a blue sign up?", "An ambulance driver", "A police officer", "A council officer", "A member of the public"], #A police officer
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+]
+
+Emergencies = [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+]
+
+Parking = [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+]
+
+Road = [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+]
+
+Rules = [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+]
+
+Driver = [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+]
 
 verification.mainloop()
