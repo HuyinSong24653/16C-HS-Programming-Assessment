@@ -1,7 +1,6 @@
 #Huyin Song, Started on 6/05/2022
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
-from os import supports_follow_symlinks
 from tkinter import*
 
 def verifyage():
@@ -17,13 +16,14 @@ def verifyage():
             lbl_welcome = Label(verification, text = "{}, Welcome!".format(username))
             lbl_welcome.place(x = 20, y = 160)
             btn_verifproceed.place(x = 100, y = 275)
-            sussy = 0
         elif userage >= 122:
             lbl_verifage.config(text = "Invalid input!\nThe highest recorded age of humans was 122 years old!")
     except ValueError:
         lbl_verifage.config(text = "Invalid input! Please input an integer!")
 
 def selection():
+    if topicproceedvariable == 0:
+        verification.destroy()
     global topicselect
     topicselect = Tk()
     topicselect.title("Quiz topic selecter")
@@ -43,33 +43,28 @@ def selection():
     btn_rules.place(x = 25, y = 275)
     btn_driver = Button(topicselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(6))
     btn_driver.place(x = 200, y = 275)
-    btn_sus = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage)
+    btn_topicproceed = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage)
 
-    if sussy == 1:
-        btn_sus.place(x = 115, y = 380)
+    if topicproceedvariable == 1:
+        btn_topicproceed.place(x = 115, y = 380)
 
 def quiztopic(arg):
-    global sussy
-    sussy = 1
+    global topicproceedvariable
+    topicproceedvariable = 1
     global mode
     if arg == 1:
-        print("general")
         mode = 1
     elif arg == 2:
-        print("emergencies")
         mode = 2
     elif arg == 3:
-        print("sus")
         mode = 3
     elif arg == 4:
-        print("sus")
         mode = 4
     elif arg == 5:
-        print("sus")
         mode = 5
     elif arg == 6:
-        print("sus")
         mode = 6
+    topicselect.destroy()
     selection()
 
 def quizpage():
@@ -120,6 +115,8 @@ btn_verifproceed = Button(verification, text = "Proceed with program", bg = "#67
 #DEVELOPER SHORTCUT
 btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection)
 btn_dev.pack()
+
+topicproceedvariable = 0
 
 General = [
     ["", "", "", "", ""],
