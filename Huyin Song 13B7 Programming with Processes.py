@@ -1,6 +1,7 @@
 #Huyin Song, Started on 6/05/2022
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
+from os import supports_follow_symlinks
 from tkinter import*
 
 def verifyage():
@@ -16,17 +17,17 @@ def verifyage():
             lbl_welcome = Label(verification, text = "{}, Welcome!".format(username))
             lbl_welcome.place(x = 20, y = 160)
             btn_verifproceed.place(x = 100, y = 275)
+            sussy = 0
         elif userage >= 122:
             lbl_verifage.config(text = "Invalid input!\nThe highest recorded age of humans was 122 years old!")
     except ValueError:
         lbl_verifage.config(text = "Invalid input! Please input an integer!")
 
 def selection():
-    verification.destroy()
     global topicselect
     topicselect = Tk()
     topicselect.title("Quiz topic selecter")
-    topicselect.geometry("375x450")
+    topicselect.geometry("375x475")
 
     lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?", font = ("Arial", 11))
     lbl_quizselectwelcome.place(x = 45, y = 30)
@@ -42,11 +43,14 @@ def selection():
     btn_rules.place(x = 25, y = 275)
     btn_driver = Button(topicselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(6))
     btn_driver.place(x = 200, y = 275)
-
     btn_sus = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage)
-    btn_sus.pack()
+
+    if sussy == 1:
+        btn_sus.place(x = 115, y = 380)
 
 def quiztopic(arg):
+    global sussy
+    sussy = 1
     global mode
     if arg == 1:
         print("general")
@@ -69,7 +73,6 @@ def quiztopic(arg):
     selection()
 
 def quizpage():
-    topicselect.destroy()
     quiz = Tk()
     quiz.title("Quiz Window")
     quiz.geometry("750x750")
@@ -82,8 +85,17 @@ def quizpage():
     btn_hint.place(x = 385, y = 20)
     btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1)
     btn_endquiz.place(x = 565, y = 20)
-    lbl_question = Label(quiz, text = "Question here", width = 64, height = 2, font = ("Arial", 15), relief = "groove")
+    lbl_question = Label(quiz, text = "Question here", width = 64, height = 3, font = ("Arial", 15), relief = "groove")
     lbl_question.place(x = 18, y = 100)
+
+    btn_option1 = Button(quiz, width = 45, height = 6, text = "option 1")
+    #btn_option1.place(x = 20, y = 500)
+    btn_option2 = Button(quiz, width = 45, height = 6, text = "option 2")
+    #btn_option2.place(x = 400, y = 500)
+    btn_option3 = Button(quiz, width = 45, height = 6, text = "option 3")
+    #btn_option3.place(x = 20, y = 625)
+    btn_option4 = Button(quiz, width = 45, height = 6, text = "option 4")
+    #btn_option4.place(x = 400, y = 625)
 
 verification = Tk()
 verification.title("Verifications window")
@@ -110,7 +122,6 @@ btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection
 btn_dev.pack()
 
 General = [
-    ["Who can put a blue sign up?", "An ambulance driver", "A police officer", "A council officer", "A member of the public"], #A police officer
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -124,7 +135,7 @@ General = [
 ]
 
 Emergencies = [
-    ["", "", "", "", ""],
+    ["Who can put a blue sign up?", "An ambulance driver", "A police officer", "A council officer", "A member of the public"], #A police officer
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
