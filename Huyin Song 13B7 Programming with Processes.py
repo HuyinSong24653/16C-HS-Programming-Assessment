@@ -2,6 +2,7 @@
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import*
+import random
 
 def verifyage():
     try:
@@ -68,6 +69,7 @@ def quiztopic(arg):
     selection()
 
 def quizpage():
+    topicselect.destroy()
     quiz = Tk()
     quiz.title("Quiz Window")
     quiz.geometry("750x750")
@@ -80,17 +82,23 @@ def quizpage():
     btn_hint.place(x = 385, y = 20)
     btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1)
     btn_endquiz.place(x = 565, y = 20)
-    lbl_question = Label(quiz, text = "Question here", width = 64, height = 3, font = ("Arial", 15), relief = "groove")
+    lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove")
     lbl_question.place(x = 18, y = 100)
 
-    btn_option1 = Button(quiz, width = 45, height = 6, text = "option 1")
-    #btn_option1.place(x = 20, y = 500)
-    btn_option2 = Button(quiz, width = 45, height = 6, text = "option 2")
-    #btn_option2.place(x = 400, y = 500)
-    btn_option3 = Button(quiz, width = 45, height = 6, text = "option 3")
-    #btn_option3.place(x = 20, y = 625)
-    btn_option4 = Button(quiz, width = 45, height = 6, text = "option 4")
-    #btn_option4.place(x = 400, y = 625)
+    btn_option1 = Button(quiz, width = 45, height = 6)
+    btn_option1.place(x = 20, y = 500)
+    btn_option2 = Button(quiz, width = 45, height = 6)
+    btn_option2.place(x = 400, y = 500)
+    btn_option3 = Button(quiz, width = 45, height = 6)
+    btn_option3.place(x = 20, y = 625)
+    btn_option4 = Button(quiz, width = 45, height = 6)
+    btn_option4.place(x = 400, y = 625)
+
+    lbl_question.config(text = Emergencies[quesfirst]["question"])
+    btn_option1.config(text = Emergencies[quesfirst]["option1"])
+    btn_option2.config(text = Emergencies[quesfirst]["option2"])
+    btn_option3.config(text = Emergencies[quesfirst]["option3"])
+    btn_option4.config(text = Emergencies[quesfirst]["option4"])
 
 verification = Tk()
 verification.title("Verifications window")
@@ -118,82 +126,22 @@ btn_dev.pack()
 
 topicproceedvariable = 0
 
-General = [
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-]
+quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+random.shuffle(quesorder)
 
-Emergencies = [
-    ["Who can put a blue sign up?", "An ambulance driver", "A police officer", "A council officer", "A member of the public"], #A police officer
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-]
+quesfirst = quesorder[0]
 
-Parking = [
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-]
-
-Road = [
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-]
-
-Rules = [
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-]
-
-Driver = [
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-]
+Emergencies = {
+    1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public"}, #A police officer
+    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+}
 
 verification.mainloop()
