@@ -1,8 +1,8 @@
 #Huyin Song, Started on 6/05/2022
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
-from tkinter import*
-import random
+from tkinter import* #Importing the GUI
+import random #Importing random to use
 
 def verifyage():
     try:
@@ -78,13 +78,12 @@ def quizpage():
     btn_progress.place(x = 25, y = 20)
     btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1)
     btn_notes.place(x = 205, y = 20)
-    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1)
+    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1, command = hintwindow)
     btn_hint.place(x = 385, y = 20)
     btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1)
     btn_endquiz.place(x = 565, y = 20)
     lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove")
     lbl_question.place(x = 18, y = 100)
-
     btn_option1 = Button(quiz, width = 45, height = 6)
     btn_option1.place(x = 20, y = 500)
     btn_option2 = Button(quiz, width = 45, height = 6)
@@ -99,6 +98,14 @@ def quizpage():
     btn_option2.config(text = Emergencies[quesfirst]["option2"])
     btn_option3.config(text = Emergencies[quesfirst]["option3"])
     btn_option4.config(text = Emergencies[quesfirst]["option4"])
+
+def hintwindow():
+    hintpopup = Tk()
+    hintpopup.title("Hint!")
+    hintpopup.geometry("250x100")
+    lbl_hint = Label(hintpopup)
+    lbl_hint.pack()
+    lbl_hint.config(text = Emergencies[quesfirst]["hint"])
 
 verification = Tk()
 verification.title("Verifications window")
@@ -132,16 +139,16 @@ random.shuffle(quesorder)
 quesfirst = quesorder[0]
 
 Emergencies = {
-    1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public"}, #A police officer
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""},
+    1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary, placed by people with control over traffic"}, #2
+    2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past - you can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?"}, #3
+    3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?"}, #4
+    4: {"question" : "If a moving car's front left tire burst, what would happen to the car?", "option1" : "The car will sway from side to side", "option2" : "The car would be pulled towards the left", "option3" : "The car would be pulled towards the right", "option4" : "The car would start spinning", "hint" : "Which side the tire is on directly affects the car"}, #2
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""}, #
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""}, #
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""}, #
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : ""}, #
 }
 
 verification.mainloop()
