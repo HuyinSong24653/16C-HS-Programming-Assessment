@@ -124,6 +124,7 @@ def notes():
     usernote = str(ent_notes.get("1.0", "end-1c"))
     print(usernote)
     lbl_notesavestatus.config(text = "Saved!")
+    
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
 verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
