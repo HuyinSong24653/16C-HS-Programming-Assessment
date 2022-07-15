@@ -76,7 +76,7 @@ def quizpage():
 
     btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1)
     btn_progress.place(x = 25, y = 20)
-    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1)
+    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1, command = noteswindow)
     btn_notes.place(x = 205, y = 20)
     btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1, command = hintwindow)
     btn_hint.place(x = 385, y = 20)
@@ -104,8 +104,26 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup.title("Hint!") #Naming the hint GUI window as "Hint!"
     hintpopup.geometry("250x100") #Setting the size of the window
     lbl_hint = Label(hintpopup) #Establishing a label
-    lbl_hint.pack() #Packing it in
+    lbl_hint.pack() #Packing the label in
     lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configuring the label with the hint associated with the current question
+
+def noteswindow():
+    notespopup = Tk() #Creating the notes GUI window
+    notespopup.title("Notes!") #Naming the notes GUI window as "Notes!"
+    notespopup.geometry("450x350") #Setting the size of the window
+    global ent_notes
+    ent_notes = Text(notespopup, font = ("Arial", 12))
+    ent_notes.place(x = 2, y = 2, width = 445, height = 295)
+    btn_savenotes = Button(notespopup, text = "Save current notes", bg = "#67fcd0", command = notes)
+    btn_savenotes.place(x = 160, y = 310)
+    global lbl_notesavestatus
+    lbl_notesavestatus = Label(notespopup)
+    lbl_notesavestatus.place(x = 300, y = 313)
+
+def notes():
+    usernote = str(ent_notes.get("1.0", "end-1c"))
+    print(usernote)
+    lbl_notesavestatus.config(text = "Saved!")
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
 verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
