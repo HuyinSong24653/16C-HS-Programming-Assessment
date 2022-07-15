@@ -4,28 +4,28 @@
 from tkinter import* #Importing the GUI
 import random #Importing random to use
 
-def verifyage():
-    try:
-        username = str(ent_name.get())
-        userage = int(ent_age.get())
-        if userage <= 0:
-            lbl_verifage.config(text = "Invalid input! You cannot be 0 or negative years old!")
-        elif userage > 0 and userage < 16:
-            lbl_verifage.config(text = "You are not old enough to qualify!")
-        elif userage >= 16 and userage < 122:
-            lbl_verifage.config(text = "You are qualified to use my program!")
-            lbl_welcome = Label(verification, text = "{}, Welcome!".format(username))
-            lbl_welcome.place(x = 20, y = 160)
-            btn_verifproceed.place(x = 100, y = 275)
-        elif userage >= 122:
-            lbl_verifage.config(text = "Invalid input!\nThe highest recorded age of humans was 122 years old!")
-    except ValueError:
-        lbl_verifage.config(text = "Invalid input! Please input an integer!")
+def verifyage(): #A function that contains the logic for the user's name and age
+    try: #Try and except to prevent errors
+        username = str(ent_name.get()) #Getting the user's name from the entry box
+        userage = int(ent_age.get()) #Getting the user's age from the entry box
+        if userage <= 0: #If user's age is less or equal to 0
+            lbl_verifage.config(text = "Invalid input! You cannot be 0 or negative years old!") #Configs label to print user has invalid age
+        elif userage > 0 and userage < 16: #If user's age is between 0 and 16
+            lbl_verifage.config(text = "You are not old enough to qualify!") #Configs label to print user is too young to use program
+        elif userage >= 16 and userage < 122: #If user's age is equal or more than 16, and between 16 to 122
+            lbl_verifage.config(text = "You are qualified to use my program!") #configs label to welcome the user, stating their qualified status
+            lbl_welcome = Label(verification, text = "{}, Welcome!".format(username)) #Establishing a label that welcomes the user, using their username
+            lbl_welcome.place(x = 20, y = 160) #Places it onto the GUI
+            btn_verifproceed.place(x = 100, y = 275) #Places the established button, allowing the user to proceed
+        elif userage >= 122: #If user's age is more or equal to 122
+            lbl_verifage.config(text = "Invalid input!\nThe highest recorded age of humans was 122 years old!") #Printing an invalid input message, user is impossibly old
+    except ValueError: #Try and except, this prevents a value error just in case the user inputs symbols or something not a integer
+        lbl_verifage.config(text = "Invalid input! Please input an integer!") #Configuring the label to help users recover from their typo
 
-def selection():
-    if topicproceedvariable == 0:
-        verification.destroy()
-    global topicselect
+def selection(): #A function for the topic selecting page
+    if topicproceedvariable == 0: #A little way to prevent a looping error
+        verification.destroy() #Destroys the verifications page, saves the user's time and effort from needing to constantly close windows
+    global topicselect #Setting topicselect variable globally, this allows me to make edits elsewhere
     topicselect = Tk()
     topicselect.title("Quiz topic selecter")
     topicselect.geometry("375x475")
@@ -93,23 +93,23 @@ def quizpage():
     btn_option4 = Button(quiz, width = 45, height = 6)
     btn_option4.place(x = 400, y = 625)
 
-    lbl_question.config(text = Emergencies[quesfirst]["question"])
-    btn_option1.config(text = Emergencies[quesfirst]["option1"])
-    btn_option2.config(text = Emergencies[quesfirst]["option2"])
-    btn_option3.config(text = Emergencies[quesfirst]["option3"])
-    btn_option4.config(text = Emergencies[quesfirst]["option4"])
+    lbl_question.config(text = Emergencies[quesfirst]["question"]) #Configuring the question into the question label
+    btn_option1.config(text = Emergencies[quesfirst]["option1"]) #Configuring the first option
+    btn_option2.config(text = Emergencies[quesfirst]["option2"]) #Configuring the second option
+    btn_option3.config(text = Emergencies[quesfirst]["option3"]) #Configuring the third option
+    btn_option4.config(text = Emergencies[quesfirst]["option4"]) #Configuring the fourth option
 
-def hintwindow():
-    hintpopup = Tk()
-    hintpopup.title("Hint!")
-    hintpopup.geometry("250x100")
-    lbl_hint = Label(hintpopup)
-    lbl_hint.pack()
-    lbl_hint.config(text = Emergencies[quesfirst]["hint"])
+def hintwindow(): #When the hint button is pressed, it runs this function
+    hintpopup = Tk() #Creating the hint GUI window
+    hintpopup.title("Hint!") #Naming the hint GUI window as "Hint!"
+    hintpopup.geometry("250x100") #Setting the size of the window
+    lbl_hint = Label(hintpopup) #Establishing a label
+    lbl_hint.pack() #Packing it in
+    lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configuring the label with the hint associated with the current question
 
-verification = Tk()
-verification.title("Verifications window")
-verification.geometry("350x350")
+verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
+verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
+verification.geometry("350x350") #Setting the size of the GUI window
 
 lbl_verifage = Label(verification)
 lbl_verifage.place(x = 20, y = 200)
@@ -128,17 +128,17 @@ btn_age.place(x = 100, y = 100)
 btn_verifproceed = Button(verification, text = "Proceed with program", bg = "#67fcd0", command = selection)
 
 #DEVELOPER SHORTCUT
-btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection)
-btn_dev.pack()
+btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection) #A button only meant for the developer(me) to use, will be removed upon program completion
+btn_dev.pack() #Simply packing it onto the GUI, may change location later
 
-topicproceedvariable = 0
+topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and will update to 1
 
-quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-random.shuffle(quesorder)
+quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
+random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
 quesfirst = quesorder[0]
 
-Emergencies = {
+Emergencies = { #A dictionary for the questions present in topic Emergencies
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary, placed by people with control over traffic"}, #2
     2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past - you can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?"}, #3
     3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?"}, #4
