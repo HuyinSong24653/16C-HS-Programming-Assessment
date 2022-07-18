@@ -93,11 +93,40 @@ def quizpage():
     btn_option4 = Button(quiz, width = 45, height = 6)
     btn_option4.place(x = 400, y = 625)
 
-    lbl_question.config(text = Emergencies[quesfirst]["question"]) #Configuring the question into the question label
-    btn_option1.config(text = Emergencies[quesfirst]["option1"]) #Configuring the first option
-    btn_option2.config(text = Emergencies[quesfirst]["option2"]) #Configuring the second option
-    btn_option3.config(text = Emergencies[quesfirst]["option3"]) #Configuring the third option
-    btn_option4.config(text = Emergencies[quesfirst]["option4"]) #Configuring the fourth option
+    if mode == 2:
+        lbl_question.config(text = Emergencies[quesfirst]["question"]) #Configuring the question into the question label
+        btn_option1.config(text = Emergencies[quesfirst]["option1"]) #Configuring the first option
+        btn_option2.config(text = Emergencies[quesfirst]["option2"]) #Configuring the second option
+        btn_option3.config(text = Emergencies[quesfirst]["option3"]) #Configuring the third option
+        btn_option4.config(text = Emergencies[quesfirst]["option4"]) #Configuring the fourth option
+
+    elif mode == 3:
+        lbl_question.config(text = Parking[quesfirst]["question"])
+        btn_option1.config(text = Parking[quesfirst]["option1"])
+        btn_option2.config(text = Parking[quesfirst]["option2"])
+        btn_option3.config(text = Parking[quesfirst]["option3"])
+        btn_option4.config(text = Parking[quesfirst]["option4"])
+
+    elif mode == 4:
+        lbl_question.config(text = Road[quesfirst]["question"])
+        btn_option1.config(text = Road[quesfirst]["option1"])
+        btn_option2.config(text = Road[quesfirst]["option2"])
+        btn_option3.config(text = Road[quesfirst]["option3"])
+        btn_option4.config(text = Road[quesfirst]["option4"])
+
+    elif mode == 5:
+        lbl_question.config(text = Rules[quesfirst]["question"])
+        btn_option1.config(text = Rules[quesfirst]["option1"])
+        btn_option2.config(text = Rules[quesfirst]["option2"])
+        btn_option3.config(text = Rules[quesfirst]["option3"])
+        btn_option4.config(text = Rules[quesfirst]["option4"])
+
+    elif mode == 6:
+        lbl_question.config(text = Driver[quesfirst]["question"])
+        btn_option1.config(text = Driver[quesfirst]["option1"])
+        btn_option2.config(text = Driver[quesfirst]["option2"])
+        btn_option3.config(text = Driver[quesfirst]["option3"])
+        btn_option4.config(text = Driver[quesfirst]["option4"])
 
 def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup = Tk() #Creating the hint GUI window
@@ -105,7 +134,21 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup.geometry("250x100") #Setting the size of the window
     lbl_hint = Label(hintpopup) #Establishing a label
     lbl_hint.pack() #Packing the label in
-    lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configuring the label with the hint associated with the current question
+
+    if mode == 2:
+        lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configuring the label with the hint associated with the current question
+
+    elif mode == 3:
+        lbl_hint.config(text = Parking[quesfirst]["hint"])
+
+    elif mode == 4:
+        lbl_hint.config(text = Road[quesfirst]["hint"])
+
+    elif mode == 5:
+        lbl_hint.config(text = Rules[quesfirst]["hint"])
+
+    elif mode == 6:
+        lbl_hint.config(text = Driver[quesfirst]["hint"])
 
 def noteswindow():
     notespopup = Tk() #Creating the notes GUI window
@@ -151,7 +194,7 @@ btn_dev.pack() #Simply packing it onto the GUI, may change location later
 
 topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and will update to 1
 
-quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
+quesorder = [1] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
 quesfirst = quesorder[0]
@@ -170,8 +213,8 @@ Emergencies = { #A dictionary for the questions present in topic Emergencies
 }
 
 Parking = {
-    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    1: {"question" : "How far should you part from someone's driveway?", "option1" : "1 meter", "option2" : "2 meters", "option3" : "5 meters", "option4" : "0.5 meters", "hint" : "A decent distance, but not excessive"}, #1
+    2: {"question" : "Ethically, should you park very close behind someone else?", "option1" : "Yeah sure, no big deal", "option2" : "Only if they can drive out through the front", "option3" : "No, you should never", "option4" : "Only for smaller cars", "hint" : "Try to be thoughtful and think 'just in case'"}, #2
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
@@ -183,8 +226,8 @@ Parking = {
 }
 
 Road = {
-    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    1: {"question" : "Which road may cause the most damage to oncoming traffic?", "option1" : "Grassy/Offroad roads", "option2" : "Concrete roads", "option3" : "Asphalt roads", "option4" : "Unsealed/pebble rock roads", "hint" : "Which road may cause flying objects?"}, #4
+    2: {"question" : "What is the general rule of priority for T intersections?", "option1" : "The turning cars always have priority", "option2" : "As long as indicators are used, everybody can go", "option3" : "It doesn't matter.\ntraffic lights control T intersections", "option4" : "The straight road has right of way", "hint" : "Think what might happen if..."}, #4
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
@@ -196,9 +239,9 @@ Road = {
 }
 
 Rules = {
-    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    1: {"question" : "What does a white sign with a red circle around 60 mean?", "option1" : "All cars must drive faster than 60km/h", "option2" : "The speed limit is 60km/h", "option3" : "Your average speed should be around 60km/h", "option4" : "60km/h speed limit only for civilian vehicles", "hint" : "Too obvious, read road code again."}, #2
+    2: {"question" : "Can restricted licensed drivers bring passengers?", "option1" : "No, absolutely not", "option2" : "Yes, they can bring anyone", "option3" : "Only with supervision, and special cases without", "option4" : "As long as your passengers have full licence", "hint" : "The freedom doesn't come until full license"}, #3
+    3: {"question" : "Can you drink and drive while under 16 years of age?", "option1" : "As long as your friends say it's going to be fine", "option2" : "Drink water first to dilute alcohol", "option3" : "No, shouldn't be drinking anyway", "option4" : "Yes, only if alcohol is under acceptable limits", "hint" : "Think in terms of drinking age limit"}, #3
     4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
