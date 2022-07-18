@@ -23,18 +23,18 @@ def verifyage(): #A function that contains the logic for the user's name and age
         lbl_verifage.config(text = "Invalid input! Please input an integer!") #Configuring the label to help users recover from their typo
 
 def selection(): #A function for the topic selecting page
-    if topicproceedvariable == 0: #A little way to prevent a looping error
+    if topicproceedvariable == 0: #If topicproceedvariable = 1 (user's first time calling this function)
         verification.destroy() #Destroys the verifications page, saves the user's time and effort from needing to constantly close windows
     global topicselect #Setting topicselect variable globally, this allows me to make edits elsewhere
-    topicselect = Tk()
-    topicselect.title("Quiz topic selecter")
-    topicselect.geometry("375x475")
+    topicselect = Tk() #Initiating the topic selection window
+    topicselect.title("Quiz topic selecter") #Giving it a title
+    topicselect.geometry("375x475") #Setting the size
 
-    lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?", font = ("Arial", 11))
-    lbl_quizselectwelcome.place(x = 45, y = 30)
-    btn_general = Button(topicselect, text = "General", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(1))
+    lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?", font = ("Arial", 11)) #Label asking the user to choose their topic
+    lbl_quizselectwelcome.place(x = 45, y = 30) #Placing it, and so on with the other .place'es for the buttons
+    btn_general = Button(topicselect, text = "General", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(1)) #Button for General, calls quiztopic function with argument as 1
     btn_general.place(x = 25, y = 85)
-    btn_emergencies = Button(topicselect, text = "Emergencies", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(2))
+    btn_emergencies = Button(topicselect, text = "Emergencies", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(2)) #Button for Emergencies, calls quiztopic function with argument as 2, and so on for the other buttons
     btn_emergencies.place(x = 200, y = 85)  
     btn_parking = Button(topicselect, text = "Parking", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(3))
     btn_parking.place(x = 25, y = 180)
@@ -44,20 +44,20 @@ def selection(): #A function for the topic selecting page
     btn_rules.place(x = 25, y = 275)
     btn_driver = Button(topicselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(6))
     btn_driver.place(x = 200, y = 275)
-    btn_topicproceed = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage)
+    btn_topicproceed = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage) #Establishing a proceeding button for the user once topic is selected, calls quizpage function
 
-    if topicproceedvariable == 1:
-        btn_topicproceed.place(x = 115, y = 380)
+    if topicproceedvariable == 1: #If topicproceedvariable = 1 (user has already chosen their topic, and is calling this function a second time)
+        btn_topicproceed.place(x = 115, y = 380) #Places the already established proceeding button onto the GUI for the user to click
 
-def quiztopic(arg):
-    global topicproceedvariable
-    topicproceedvariable = 1
-    global mode
-    if arg == 1:
-        mode = 1
-    elif arg == 2:
-        mode = 2
-    elif arg == 3:
+def quiztopic(arg): #quiztopic function called from topic selection buttons, takes argument
+    global topicproceedvariable #Setting topicproceedvariable as global to avoid error
+    topicproceedvariable = 1 #setting topicproceedvariable as 1
+    global mode #Setting mode to global so it may be used outside of function
+    if arg == 1: #If argument is 1 (user clicked General topic)
+        mode = 1 #Set mode as 1 (for General)
+    elif arg == 2: #If argument is 2 (user clicked Emergencies topic)
+        mode = 2 #Set mode as 2 (for Emergencies)
+    elif arg == 3: #And so on
         mode = 3
     elif arg == 4:
         mode = 4
@@ -65,63 +65,63 @@ def quiztopic(arg):
         mode = 5
     elif arg == 6:
         mode = 6
-    topicselect.destroy()
-    selection()
+    topicselect.destroy() #The program destroys the old topic selection window
+    selection() #And calls the selection function, which will create a new topic selection window with the proceed button present, had to do this to avoid a looping logic error
 
-def quizpage():
-    topicselect.destroy()
-    quiz = Tk()
-    quiz.title("Quiz Window")
-    quiz.geometry("750x750")
+def quizpage(): #A function for the actual testing page, called from the topic proceed button on the topic selection page
+    topicselect.destroy() #Destroys the topic selection page, in order to avoid duplicated testing pages and changing topics during a test
+    quiz = Tk() #Creating the quiz/test window
+    quiz.title("Quiz Window") #Naming it
+    quiz.geometry("750x750") #Setting the sizes
 
-    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1)
-    btn_progress.place(x = 25, y = 20)
-    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1, command = noteswindow)
-    btn_notes.place(x = 205, y = 20)
-    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1, command = hintwindow)
+    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1) #Button for the user, will show current quiz progress
+    btn_progress.place(x = 25, y = 20) #Places it at the top of the GUI
+    btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1, command = noteswindow) #Notes button, will call noteswindow function to create new window for the user's notes
+    btn_notes.place(x = 205, y = 20) #Placing it and so on...
+    btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1, command = hintwindow) #Hints window, calls the hintwindow function which will give a hint on the current question in a small hint window
     btn_hint.place(x = 385, y = 20)
-    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1)
+    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1) #A button for the user to end the quiz prior to quiz completion
     btn_endquiz.place(x = 565, y = 20)
-    lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove")
+    lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove") #A label for where the question will go
     lbl_question.place(x = 18, y = 100)
-    btn_option1 = Button(quiz, width = 45, height = 6)
+    btn_option1 = Button(quiz, width = 45, height = 6) #A button for the user's first option
     btn_option1.place(x = 20, y = 500)
-    btn_option2 = Button(quiz, width = 45, height = 6)
+    btn_option2 = Button(quiz, width = 45, height = 6) #A buutton for the user's second option, and so on...
     btn_option2.place(x = 400, y = 500)
     btn_option3 = Button(quiz, width = 45, height = 6)
     btn_option3.place(x = 20, y = 625)
     btn_option4 = Button(quiz, width = 45, height = 6)
     btn_option4.place(x = 400, y = 625)
 
-    if mode == 2:
-        lbl_question.config(text = Emergencies[quesfirst]["question"]) #Configuring the question into the question label
-        btn_option1.config(text = Emergencies[quesfirst]["option1"]) #Configuring the first option
-        btn_option2.config(text = Emergencies[quesfirst]["option2"]) #Configuring the second option
-        btn_option3.config(text = Emergencies[quesfirst]["option3"]) #Configuring the third option
-        btn_option4.config(text = Emergencies[quesfirst]["option4"]) #Configuring the fourth option
+    if mode == 2: #If mode = 2 (Emergencies)
+        lbl_question.config(text = Emergencies[quesfirst]["question"]) #Configure the question label to display 'Emergencies' dictionary's first question's question
+        btn_option1.config(text = Emergencies[quesfirst]["option1"]) #Configure the first option button to display 'Emergencies' dictionary's first question's first option
+        btn_option2.config(text = Emergencies[quesfirst]["option2"]) #and so on...
+        btn_option3.config(text = Emergencies[quesfirst]["option3"]) #it does this for all the different topics
+        btn_option4.config(text = Emergencies[quesfirst]["option4"])
 
-    elif mode == 3:
+    elif mode == 3: #If mode = 3 (Parking)
         lbl_question.config(text = Parking[quesfirst]["question"])
         btn_option1.config(text = Parking[quesfirst]["option1"])
         btn_option2.config(text = Parking[quesfirst]["option2"])
         btn_option3.config(text = Parking[quesfirst]["option3"])
         btn_option4.config(text = Parking[quesfirst]["option4"])
 
-    elif mode == 4:
+    elif mode == 4: #If mode = 4 (Road)
         lbl_question.config(text = Road[quesfirst]["question"])
         btn_option1.config(text = Road[quesfirst]["option1"])
         btn_option2.config(text = Road[quesfirst]["option2"])
         btn_option3.config(text = Road[quesfirst]["option3"])
         btn_option4.config(text = Road[quesfirst]["option4"])
 
-    elif mode == 5:
+    elif mode == 5: #If mode = 5 (Rules)
         lbl_question.config(text = Rules[quesfirst]["question"])
         btn_option1.config(text = Rules[quesfirst]["option1"])
         btn_option2.config(text = Rules[quesfirst]["option2"])
         btn_option3.config(text = Rules[quesfirst]["option3"])
         btn_option4.config(text = Rules[quesfirst]["option4"])
 
-    elif mode == 6:
+    elif mode == 6: #If mode = 6 (Driver)
         lbl_question.config(text = Driver[quesfirst]["question"])
         btn_option1.config(text = Driver[quesfirst]["option1"])
         btn_option2.config(text = Driver[quesfirst]["option2"])
@@ -135,38 +135,38 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     lbl_hint = Label(hintpopup) #Establishing a label
     lbl_hint.pack() #Packing the label in
 
-    if mode == 2:
-        lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configuring the label with the hint associated with the current question
+    if mode == 2: #If mode = 2 (Emergencies)
+        lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configure the hint label inside the hint window to display the 'Emergencies' dictionary's first question's hint
 
-    elif mode == 3:
-        lbl_hint.config(text = Parking[quesfirst]["hint"])
+    elif mode == 3: #If mode = 3 (Parking)
+        lbl_hint.config(text = Parking[quesfirst]["hint"]) #and so on for the other dictionaries
 
-    elif mode == 4:
+    elif mode == 4: #If mode = 4 (Road)
         lbl_hint.config(text = Road[quesfirst]["hint"])
 
-    elif mode == 5:
+    elif mode == 5: #If mode = 5 (Rules)
         lbl_hint.config(text = Rules[quesfirst]["hint"])
 
-    elif mode == 6:
+    elif mode == 6: #If mode = 6 (Driver)
         lbl_hint.config(text = Driver[quesfirst]["hint"])
 
 def noteswindow():
     notespopup = Tk() #Creating the notes GUI window
     notespopup.title("Notes!") #Naming the notes GUI window as "Notes!"
     notespopup.geometry("450x350") #Setting the size of the window
-    global ent_notes
-    ent_notes = Text(notespopup, font = ("Arial", 12))
-    ent_notes.place(x = 2, y = 2, width = 445, height = 295)
-    btn_savenotes = Button(notespopup, text = "Save current notes", bg = "#67fcd0", command = notes)
-    btn_savenotes.place(x = 160, y = 310)
-    global lbl_notesavestatus
-    lbl_notesavestatus = Label(notespopup)
-    lbl_notesavestatus.place(x = 300, y = 313)
+    global ent_notes #Setting the entry containing the user's notes as global, will be used later to be viewed by the user
+    ent_notes = Text(notespopup, font = ("Arial", 12)) #Setting the entry as Text onto the notes window, with Arial as the font and 12 as the font size
+    ent_notes.place(x = 2, y = 2, width = 445, height = 295) #Placing it, and setting the appropriate width and height sufficient for the user's notes
+    btn_savenotes = Button(notespopup, text = "Save current notes", bg = "#67fcd0", command = notes) #Establishing a button for the user to save their currently written notes, calls 'notes' function upon click
+    btn_savenotes.place(x = 160, y = 310) #and placing it onto the notes window
+    global lbl_notesavestatus #Setting the notesavestatus as global as it will be used in the 'notes' function called
+    lbl_notesavestatus = Label(notespopup) #Establishing a blank label in notes window, will be used to show note's save status
+    lbl_notesavestatus.place(x = 300, y = 313) #Placing it in a easy to see spot
 
-def notes():
-    usernote = str(ent_notes.get("1.0", "end-1c"))
-    print(usernote)
-    lbl_notesavestatus.config(text = "Saved!")
+def notes(): #notes function, called when the user clicked to save their notes
+    usernote = str(ent_notes.get("1.0", "end-1c")) #Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
+    print(usernote) #DEVELOPER USE, ONLY TO TEST IF 'usernote get' IS WORKING AS INTENDED
+    lbl_notesavestatus.config(text = "Saved!") #Configures the save status label to display "Saved!" to let the user know their notes are saved
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
 verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
@@ -194,7 +194,10 @@ btn_dev.pack() #Simply packing it onto the GUI, may change location later
 
 topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and will update to 1
 
-quesorder = [1] #A list of questions
+#DEVELOPER COPY AND PASTE
+#1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
 quesfirst = quesorder[0]
