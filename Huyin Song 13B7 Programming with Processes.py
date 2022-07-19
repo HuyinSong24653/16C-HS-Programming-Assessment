@@ -200,7 +200,16 @@ topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and w
 quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
-quesfirst = quesorder[0]
+quesfirst = quesorder[0] #Setting variables for each question
+quessecond = quesorder[1] #and so on...
+questhird = quesorder[2]
+quesfourth = quesorder[3]
+quesfifth = quesorder[4]
+quessixth = quesorder[5]
+quesseventh = quesorder[6]
+queseighth = quesorder[7]
+quesninth = quesorder[8]
+questenth = quesorder[9]
 
 Emergencies = { #A dictionary for the questions present in topic Emergencies
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic"}, #2
