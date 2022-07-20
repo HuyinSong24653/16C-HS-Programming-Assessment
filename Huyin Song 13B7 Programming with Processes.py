@@ -52,24 +52,25 @@ def selection(): #A function for the topic selecting page
 def quiztopic(arg): #quiztopic function called from topic selection buttons, takes argument
     global topicproceedvariable #Setting topicproceedvariable as global to avoid error
     topicproceedvariable = 1 #setting topicproceedvariable as 1
-    global mode #Setting mode to global so it may be used outside of function
+    global topic
     if arg == 1: #If argument is 1 (user clicked General topic)
-        mode = 1 #Set mode as 1 (for General)
-    elif arg == 2: #If argument is 2 (user clicked Emergencies topic)
-        mode = 2 #Set mode as 2 (for Emergencies)
-    elif arg == 3: #And so on
-        mode = 3
+        topic = 1 #Set topic as 1 (for General)
+    elif arg == 2: #If argument is 2 (user clicked Emergencies topic), and so on for other topics
+        topic = Emergencies #Set topic as Emergencies
+    elif arg == 3:
+        topic = Parking
     elif arg == 4:
-        mode = 4
+        topic = Road
     elif arg == 5:
-        mode = 5
+        topic = Rules
     elif arg == 6:
-        mode = 6
+        topic = Driver
     topicselect.destroy() #The program destroys the old topic selection window
     selection() #And calls the selection function, which will create a new topic selection window with the proceed button present, had to do this to avoid a looping logic error
 
 def quizpage(): #A function for the actual testing page, called from the topic proceed button on the topic selection page
-    topicselect.destroy() #Destroys the topic selection page, in order to avoid duplicated testing pages and changing topics during a test
+    if progress == 1:
+        topicselect.destroy() #Destroys the topic selection page, in order to avoid duplicated testing pages and changing topics during a test
     quiz = Tk() #Creating the quiz/test window
     quiz.title("Quiz Window") #Naming it
     quiz.geometry("750x750") #Setting the sizes
@@ -84,49 +85,68 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     btn_endquiz.place(x = 565, y = 20)
     lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove") #A label for where the question will go
     lbl_question.place(x = 18, y = 100)
-    btn_option1 = Button(quiz, width = 45, height = 6) #A button for the user's first option
+    btn_option1 = Button(quiz, width = 45, height = 6, command = choice1) #A button for the user's first option
     btn_option1.place(x = 20, y = 500)
-    btn_option2 = Button(quiz, width = 45, height = 6) #A buutton for the user's second option, and so on...
+    btn_option2 = Button(quiz, width = 45, height = 6, command = choice2) #A buutton for the user's second option, and so on...
     btn_option2.place(x = 400, y = 500)
-    btn_option3 = Button(quiz, width = 45, height = 6)
+    btn_option3 = Button(quiz, width = 45, height = 6, command = choice3)
     btn_option3.place(x = 20, y = 625)
-    btn_option4 = Button(quiz, width = 45, height = 6)
+    btn_option4 = Button(quiz, width = 45, height = 6, command = choice4)
     btn_option4.place(x = 400, y = 625)
 
-    if mode == 2: #If mode = 2 (Emergencies)
-        lbl_question.config(text = Emergencies[quesfirst]["question"]) #Configure the question label to display 'Emergencies' dictionary's first question's question
-        btn_option1.config(text = Emergencies[quesfirst]["option1"]) #Configure the first option button to display 'Emergencies' dictionary's first question's first option
-        btn_option2.config(text = Emergencies[quesfirst]["option2"]) #and so on...
-        btn_option3.config(text = Emergencies[quesfirst]["option3"]) #it does this for all the different topics
-        btn_option4.config(text = Emergencies[quesfirst]["option4"])
+    lbl_question.config(text = topic[quesfirst]["question"]) #Configure the question label to display 'topic' dictionary's first question's question
+    btn_option1.config(text = topic[quesfirst]["option1"]) #Configure the first option button to display 'topic' dictionary's first question's first option
+    btn_option2.config(text = topic[quesfirst]["option2"]) #and so on...
+    btn_option3.config(text = topic[quesfirst]["option3"])
+    btn_option4.config(text = topic[quesfirst]["option4"])
 
-    elif mode == 3: #If mode = 3 (Parking)
-        lbl_question.config(text = Parking[quesfirst]["question"])
-        btn_option1.config(text = Parking[quesfirst]["option1"])
-        btn_option2.config(text = Parking[quesfirst]["option2"])
-        btn_option3.config(text = Parking[quesfirst]["option3"])
-        btn_option4.config(text = Parking[quesfirst]["option4"])
+def choice1():
+    global progress
+    progress += 1
+    choice = topic[quesfirst]["option1"]
+    print(choice)
+    if choice == topic[quesfirst]["answer"]:
+        print("Correct!")
+    elif choice != topic[quesfirst]["answer"]:
+        print("Wrong!")
+    else:
+        print("Error")
 
-    elif mode == 4: #If mode = 4 (Road)
-        lbl_question.config(text = Road[quesfirst]["question"])
-        btn_option1.config(text = Road[quesfirst]["option1"])
-        btn_option2.config(text = Road[quesfirst]["option2"])
-        btn_option3.config(text = Road[quesfirst]["option3"])
-        btn_option4.config(text = Road[quesfirst]["option4"])
+def choice2():
+    global progress
+    progress += 1
+    choice = topic[quesfirst]["option2"]
+    print(choice)
+    if choice == topic[quesfirst]["answer"]:
+        print("Correct!")
+    elif choice != topic[quesfirst]["answer"]:
+        print("Wrong!")
+    else:
+        print("Error")
 
-    elif mode == 5: #If mode = 5 (Rules)
-        lbl_question.config(text = Rules[quesfirst]["question"])
-        btn_option1.config(text = Rules[quesfirst]["option1"])
-        btn_option2.config(text = Rules[quesfirst]["option2"])
-        btn_option3.config(text = Rules[quesfirst]["option3"])
-        btn_option4.config(text = Rules[quesfirst]["option4"])
+def choice3():
+    global progress
+    progress += 1
+    choice = topic[quesfirst]["option3"]
+    print(choice)
+    if choice == topic[quesfirst]["answer"]:
+        print("Correct!")
+    elif choice != topic[quesfirst]["answer"]:
+        print("Wrong!")
+    else:
+        print("Error")
 
-    elif mode == 6: #If mode = 6 (Driver)
-        lbl_question.config(text = Driver[quesfirst]["question"])
-        btn_option1.config(text = Driver[quesfirst]["option1"])
-        btn_option2.config(text = Driver[quesfirst]["option2"])
-        btn_option3.config(text = Driver[quesfirst]["option3"])
-        btn_option4.config(text = Driver[quesfirst]["option4"])
+def choice4():
+    global progress
+    progress += 1
+    choice = topic[quesfirst]["option4"]
+    print(choice)
+    if choice == topic[quesfirst]["answer"]:
+        print("Correct!")
+    elif choice != topic[quesfirst]["answer"]:
+        print("Wrong!")
+    else:
+        print("Error")
 
 def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup = Tk() #Creating the hint GUI window
@@ -134,21 +154,7 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup.geometry("250x100") #Setting the size of the window
     lbl_hint = Label(hintpopup) #Establishing a label
     lbl_hint.pack() #Packing the label in
-
-    if mode == 2: #If mode = 2 (Emergencies)
-        lbl_hint.config(text = Emergencies[quesfirst]["hint"]) #Configure the hint label inside the hint window to display the 'Emergencies' dictionary's first question's hint
-
-    elif mode == 3: #If mode = 3 (Parking)
-        lbl_hint.config(text = Parking[quesfirst]["hint"]) #and so on for the other dictionaries
-
-    elif mode == 4: #If mode = 4 (Road)
-        lbl_hint.config(text = Road[quesfirst]["hint"])
-
-    elif mode == 5: #If mode = 5 (Rules)
-        lbl_hint.config(text = Rules[quesfirst]["hint"])
-
-    elif mode == 6: #If mode = 6 (Driver)
-        lbl_hint.config(text = Driver[quesfirst]["hint"])
+    lbl_hint.config(text = topic[quesfirst]["hint"]) #Configure the hint label inside the hint window to display the 'topic' dictionary's first question's hint
 
 def noteswindow():
     notespopup = Tk() #Creating the notes GUI window
@@ -197,23 +203,18 @@ topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and w
 #DEVELOPER COPY AND PASTE
 #1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
+quesorder = [1] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
 quesfirst = quesorder[0] #Setting variables for each question
-quessecond = quesorder[1] #and so on...
-questhird = quesorder[2]
-quesfourth = quesorder[3]
-quesfifth = quesorder[4]
-quessixth = quesorder[5]
-quesseventh = quesorder[6]
-queseighth = quesorder[7]
-quesninth = quesorder[8]
-questenth = quesorder[9]
+
+progress = 1
+choice = NONE
+topic = NONE
 
 Emergencies = { #A dictionary for the questions present in topic Emergencies
-    1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic"}, #2
-    2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past - you can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?"}, #3
+    1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic", "answer" : "A police officer"}, #2
+    2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past\nyou can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?"}, #3
     3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?"}, #4
     4: {"question" : "If a moving car's front left tire burst, what would happen to the car?", "option1" : "The car will sway from side to side", "option2" : "The car would be pulled towards the left", "option3" : "The car would be pulled towards the right", "option4" : "The car would start spinning", "hint" : "Which side the tire is on directly affects the car"}, #2
     5: {"question" : "If you get flash by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light"}, #3
@@ -225,7 +226,7 @@ Emergencies = { #A dictionary for the questions present in topic Emergencies
 }
 
 Parking = {
-    1: {"question" : "How far should you part from someone's driveway?", "option1" : "1 meter", "option2" : "2 meters", "option3" : "5 meters", "option4" : "0.5 meters", "hint" : "A decent distance, but not excessive"}, #1
+    1: {"question" : "How far should you part from someone's driveway?", "option1" : "1 meter", "option2" : "2 meters", "option3" : "5 meters", "option4" : "0.5 meters", "hint" : "A decent distance, but not excessive", "answer" : "1 meter"}, #1
     2: {"question" : "Ethically, should you park very close behind someone else?", "option1" : "Yeah sure, no big deal", "option2" : "Only if they can drive out through the front", "option3" : "No, you should never", "option4" : "Only for smaller cars", "hint" : "Try to be thoughtful and think 'just in case'"}, #2
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
@@ -238,7 +239,7 @@ Parking = {
 }
 
 Road = {
-    1: {"question" : "Which road may cause the most damage to oncoming traffic?", "option1" : "Grassy/Offroad roads", "option2" : "Concrete roads", "option3" : "Asphalt roads", "option4" : "Unsealed/pebble rock roads", "hint" : "Which road may cause flying objects?"}, #4
+    1: {"question" : "Which road may cause the most damage to oncoming traffic?", "option1" : "Grassy/Offroad roads", "option2" : "Concrete roads", "option3" : "Asphalt roads", "option4" : "Unsealed/pebble rock roads", "hint" : "Which road may cause flying objects?", "answer" : "Unsealed/pebble rock roads"}, #4
     2: {"question" : "What is the general rule of priority for T intersections?", "option1" : "The turning cars always have priority", "option2" : "As long as indicators are used, everybody can go", "option3" : "It doesn't matter.\ntraffic lights control T intersections", "option4" : "The straight road has right of way", "hint" : "Think what might happen if..."}, #4
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
@@ -251,7 +252,7 @@ Road = {
 }
 
 Rules = {
-    1: {"question" : "What does a white sign with a red circle around 60 mean?", "option1" : "All cars must drive faster than 60km/h", "option2" : "The speed limit is 60km/h", "option3" : "Your average speed should be around 60km/h", "option4" : "60km/h speed limit only for civilian vehicles", "hint" : "Too obvious, read road code again."}, #2
+    1: {"question" : "What does a white sign with a red circle around 60 mean?", "option1" : "All cars must drive faster than 60km/h", "option2" : "The speed limit is 60km/h", "option3" : "Your average speed should be around 60km/h", "option4" : "60km/h speed limit only for civilian vehicles", "hint" : "Too obvious, read road code again", "answer" : "The speed limit is 60km/h"}, #2
     2: {"question" : "Can restricted licensed drivers bring passengers?", "option1" : "No, absolutely not", "option2" : "Yes, they can bring anyone", "option3" : "Only with supervision, and special cases without", "option4" : "As long as your passengers have full licence", "hint" : "The freedom doesn't come until full license"}, #3
     3: {"question" : "Can you drink and drive while under 16 years of age?", "option1" : "As long as your friends say it's going to be fine", "option2" : "Drink water first to dilute alcohol", "option3" : "No, shouldn't be drinking anyway", "option4" : "Yes, only if alcohol is under acceptable limits", "hint" : "Think in terms of drinking age limit"}, #3
     4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
