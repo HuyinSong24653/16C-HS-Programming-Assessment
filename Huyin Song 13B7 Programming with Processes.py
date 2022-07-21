@@ -85,12 +85,16 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     btn_endquiz.place(x = 565, y = 20)
     lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove") #A label for where the question will go
     lbl_question.place(x = 18, y = 100)
+    global btn_option1 #Setting global so I can edit later
     btn_option1 = Button(quiz, width = 45, height = 6, command = choice1) #A button for the user's first option
     btn_option1.place(x = 20, y = 500)
+    global btn_option2
     btn_option2 = Button(quiz, width = 45, height = 6, command = choice2) #A buutton for the user's second option, and so on...
     btn_option2.place(x = 400, y = 500)
+    global btn_option3
     btn_option3 = Button(quiz, width = 45, height = 6, command = choice3)
     btn_option3.place(x = 20, y = 625)
+    global btn_option4
     btn_option4 = Button(quiz, width = 45, height = 6, command = choice4)
     btn_option4.place(x = 400, y = 625)
 
@@ -104,49 +108,37 @@ def choice1():
     global progress
     progress += 1
     choice = topic[quesfirst]["option1"]
-    print(choice)
     if choice == topic[quesfirst]["answer"]:
-        print("Correct!")
+        btn_option1.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
-        print("Wrong!")
-    else:
-        print("Error")
+        btn_option1.config(bg = "#EB270C")
 
 def choice2():
     global progress
     progress += 1
     choice = topic[quesfirst]["option2"]
-    print(choice)
     if choice == topic[quesfirst]["answer"]:
-        print("Correct!")
+        btn_option2.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
-        print("Wrong!")
-    else:
-        print("Error")
+        btn_option2.config(bg = "#EB270C")
 
 def choice3():
     global progress
     progress += 1
     choice = topic[quesfirst]["option3"]
-    print(choice)
     if choice == topic[quesfirst]["answer"]:
-        print("Correct!")
+        btn_option3.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
-        print("Wrong!")
-    else:
-        print("Error")
+        btn_option3.config(bg = "#EB270C")
 
 def choice4():
     global progress
     progress += 1
     choice = topic[quesfirst]["option4"]
-    print(choice)
     if choice == topic[quesfirst]["answer"]:
-        print("Correct!")
+        btn_option4.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
-        print("Wrong!")
-    else:
-        print("Error")
+        btn_option4.config(bg = "#EB270C")
 
 def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup = Tk() #Creating the hint GUI window
