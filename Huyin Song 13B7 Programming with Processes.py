@@ -102,20 +102,43 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     global btn_quizproceed
     btn_quizproceed = Button(quiz, text = "Do you wish to proceed?", width = 15, height = 3, bg = "#67fcd0", command = quizpage)
 
-    lbl_question.config(text = topic[quesfirst]["question"]) #Configure the question label to display 'topic' dictionary's first question's question
-    btn_option1.config(text = topic[quesfirst]["option1"]) #Configure the first option button to display 'topic' dictionary's first question's first option
-    btn_option2.config(text = topic[quesfirst]["option2"]) #and so on...
-    btn_option3.config(text = topic[quesfirst]["option3"])
-    btn_option4.config(text = topic[quesfirst]["option4"])
+    global ques
+    if progress == 1:
+        ques = quesorder[0]
+    elif progress == 2:
+        ques = quesorder[1]
+    elif progress == 3:
+        ques = quesorder[2]
+    elif progress == 4:
+        ques = quesorder[3]
+    elif progress == 5:
+        ques = quesorder[4]
+    elif progress == 6:
+        ques = quesorder[5]
+    elif progress == 7:
+        ques = quesorder[6]
+    elif progress == 8:
+        ques = quesorder[7]
+    elif progress == 9:
+        ques = quesorder[8]
+    elif progress == 10:
+        ques = quesorder[9]
+    print(ques)
+
+    lbl_question.config(text = topic[ques]["question"]) #Configure the question label to display 'topic' dictionary's first question's question
+    btn_option1.config(text = topic[ques]["option1"]) #Configure the first option button to display 'topic' dictionary's first question's first option
+    btn_option2.config(text = topic[ques]["option2"]) #and so on...
+    btn_option3.config(text = topic[ques]["option3"])
+    btn_option4.config(text = topic[ques]["option4"])
 
 def choice1():
     global progress
     progress += 1
     print(progress)
-    choice = topic[quesfirst]["option1"]
-    if choice == topic[quesfirst]["answer"]:
+    choice = topic[ques]["option1"]
+    if choice == topic[ques]["answer"]:
         btn_option1.config(bg = "#10EE10")
-    elif choice != topic[quesfirst]["answer"]:
+    elif choice != topic[ques]["answer"]:
         btn_option1.config(bg = "#EB270C")
     btn_quizproceed.pack()
 
@@ -123,10 +146,10 @@ def choice2():
     global progress
     progress += 1
     print(progress)
-    choice = topic[quesfirst]["option2"]
-    if choice == topic[quesfirst]["answer"]:
+    choice = topic[ques]["option2"]
+    if choice == topic[ques]["answer"]:
         btn_option2.config(bg = "#10EE10")
-    elif choice != topic[quesfirst]["answer"]:
+    elif choice != topic[ques]["answer"]:
         btn_option2.config(bg = "#EB270C")
     btn_quizproceed.pack()
 
@@ -134,10 +157,10 @@ def choice3():
     global progress
     progress += 1
     print(progress)
-    choice = topic[quesfirst]["option3"]
-    if choice == topic[quesfirst]["answer"]:
+    choice = topic[ques]["option3"]
+    if choice == topic[ques]["answer"]:
         btn_option3.config(bg = "#10EE10")
-    elif choice != topic[quesfirst]["answer"]:
+    elif choice != topic[ques]["answer"]:
         btn_option3.config(bg = "#EB270C")
     btn_quizproceed.pack()
 
@@ -145,10 +168,10 @@ def choice4():
     global progress
     progress += 1
     print(progress)
-    choice = topic[quesfirst]["option4"]
-    if choice == topic[quesfirst]["answer"]:
+    choice = topic[ques]["option4"]
+    if choice == topic[ques]["answer"]:
         btn_option4.config(bg = "#10EE10")
-    elif choice != topic[quesfirst]["answer"]:
+    elif choice != topic[ques]["answer"]:
         btn_option4.config(bg = "#EB270C")
     btn_quizproceed.pack()
 
@@ -158,7 +181,7 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup.geometry("250x100") #Setting the size of the window
     lbl_hint = Label(hintpopup) #Establishing a label
     lbl_hint.pack() #Packing the label in
-    lbl_hint.config(text = topic[quesfirst]["hint"]) #Configure the hint label inside the hint window to display the 'topic' dictionary's first question's hint
+    lbl_hint.config(text = topic[ques]["hint"]) #Configure the hint label inside the hint window to display the 'topic' dictionary's first question's hint
 
 def noteswindow():
     notespopup = Tk() #Creating the notes GUI window
@@ -207,10 +230,8 @@ topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and w
 #DEVELOPER COPY AND PASTE
 #1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-quesorder = [1, 2, 3, 4] #A list of questions
+quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
-
-quesfirst = quesorder[0] #Setting variables for each question
 
 progress = 1
 choice = NONE
@@ -221,7 +242,7 @@ Emergencies = { #A dictionary for the questions present in topic Emergencies
     2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past\nyou can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?", "answer" : "If its siren and/or red flashing lights are on"}, #3
     3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?", "answer" : "Check for injuries"}, #4
     4: {"question" : "If a moving car's front left tire burst, what would happen to the car?", "option1" : "The car will sway from side to side", "option2" : "The car would be pulled towards the left", "option3" : "The car would be pulled towards the right", "option4" : "The car would start spinning", "hint" : "Which side the tire is on directly affects the car", "answer" : "The car would be pulled towards the left"}, #2
-    5: {"question" : "If you get flash by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light"}, #3
+    5: {"question" : "If you get flashed by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light"}, #3
     6: {"question" : "What will happen if your car hits a body of water from a height?", "option1" : "You will float on the water", "option2" : "You will fall through the water", "option3" : "You will hit water like it was a solid", "option4" : "You will bounce off the water", "hint" : "Think about jumping into a swimming pool", "answer" : ""}, #3
     7: {"question" : "If your car is sinking, how and when should you get out?", "option1" : "Open and escape through a window\nbefore the water is higher than the window", "option2" : "Escape through the boot once the car fills up", "option3" : "Break the front glass as the car is sinking", "option4" : "Use the doors once the car comes to a standstill", "hint" : "Think in terms of water pressure", "answer" : ""}, #1
     8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
