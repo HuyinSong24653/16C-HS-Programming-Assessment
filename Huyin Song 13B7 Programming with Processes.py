@@ -132,7 +132,6 @@ def quizpage(): #A function for the actual testing page, called from the topic p
         ques = quesorder[8]
     elif progress == 10:
         ques = quesorder[9]
-    print(ques)
 
     lbl_question.config(text = topic[ques]["question"]) #Configure the question label to display 'topic' dictionary's first question's question
     btn_option1.config(text = topic[ques]["option1"]) #Configure the first option button to display 'topic' dictionary's first question's first option
@@ -143,7 +142,6 @@ def quizpage(): #A function for the actual testing page, called from the topic p
 def choice1():
     global progress
     progress += 1
-    print(progress)
     choice = topic[ques]["option1"]
     global correct
     global wrong
@@ -158,7 +156,6 @@ def choice1():
 def choice2():
     global progress
     progress += 1
-    print(progress)
     choice = topic[ques]["option2"]
     global correct
     global wrong
@@ -173,7 +170,6 @@ def choice2():
 def choice3():
     global progress
     progress += 1
-    print(progress)
     choice = topic[ques]["option3"]
     global correct
     global wrong
@@ -188,7 +184,6 @@ def choice3():
 def choice4():
     global progress
     progress += 1
-    print(progress)
     choice = topic[ques]["option4"]
     global correct
     global wrong
@@ -229,7 +224,6 @@ def noteswindow():
 def notes(): #notes function, called when the user clicked to save their notes
     global usernote
     usernote = str(ent_notes.get("1.0", "end-1c")) #Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
-    print(usernote) #DEVELOPER USE, ONLY TO TEST IF 'usernote get' IS WORKING AS INTENDED
     lbl_notesavestatus.config(text = "Saved!") #Configures the save status label to display "Saved!" to let the user know their notes are saved
 
 def quizfinish():
@@ -237,17 +231,17 @@ def quizfinish():
     quizending.title("Well done! Quiz is over, here are your scores")
     quizending.geometry("410x365")
 
-    lbl_endtopic = Label(quizending, text = "Topic tested on: {}".format(topicname), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endtopic = Label(quizending, text = "Topic tested on: {}".format(topicname), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
     lbl_endtopic.place(x = 10, y = 10)
-    lbl_endprogress = Label(quizending, text = "Progress: {}/10".format(progress), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endprogress = Label(quizending, text = "Progress: {}/10".format(progress), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
     lbl_endprogress.place(x = 220, y = 10)
-    lbl_endcorrect = Label(quizending, text = "Num. Correct answers: {}/10".format(correct), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endcorrect = Label(quizending, text = "Num. Correct answers: {}/10".format(correct), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
     lbl_endcorrect.place(x = 10, y = 70)
-    lbl_endwrong = Label(quizending, text = "Num. Wrong answers: {}/10".format(wrong), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endwrong = Label(quizending, text = "Num. Wrong answers: {}/10".format(wrong), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
     lbl_endwrong.place(x = 220, y = 70)
-    lbl_endhintsused = Label(quizending, text = "Num. Hints used: {}".format(hintuses), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endhintsused = Label(quizending, text = "Num. Hints used: {}".format(hintuses), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
     lbl_endhintsused.place(x = 10, y = 130)
-    lbl_endnotes = Label(quizending, text = usernote, bg = "#67fcd0", font = ("Arial", 10), width = 48, height = 10)
+    lbl_endnotes = Label(quizending, text = usernote, bg = "#67fcd0", font = ("Arial", 10), width = 48, height = 10, wraplength = 380, justify = "center", relief = "groove")
     lbl_endnotes.place(x = 10, y = 190)
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
