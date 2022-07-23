@@ -71,6 +71,7 @@ def quiztopic(arg): #quiztopic function called from topic selection buttons, tak
 def quizpage(): #A function for the actual testing page, called from the topic proceed button on the topic selection page
     if progress == 1:
         topicselect.destroy() #Destroys the topic selection page, in order to avoid duplicated testing pages and changing topics during a test
+    global quiz
     quiz = Tk() #Creating the quiz/test window
     quiz.title("Quiz Window") #Naming it
     quiz.geometry("750x750") #Setting the sizes
@@ -98,6 +99,9 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     btn_option4 = Button(quiz, width = 45, height = 6, command = choice4)
     btn_option4.place(x = 400, y = 625)
 
+    global btn_quizproceed
+    btn_quizproceed = Button(quiz, text = "Do you wish to proceed?", width = 15, height = 3, bg = "#67fcd0", command = quizpage)
+
     lbl_question.config(text = topic[quesfirst]["question"]) #Configure the question label to display 'topic' dictionary's first question's question
     btn_option1.config(text = topic[quesfirst]["option1"]) #Configure the first option button to display 'topic' dictionary's first question's first option
     btn_option2.config(text = topic[quesfirst]["option2"]) #and so on...
@@ -107,38 +111,46 @@ def quizpage(): #A function for the actual testing page, called from the topic p
 def choice1():
     global progress
     progress += 1
+    print(progress)
     choice = topic[quesfirst]["option1"]
     if choice == topic[quesfirst]["answer"]:
         btn_option1.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
         btn_option1.config(bg = "#EB270C")
+    btn_quizproceed.pack()
 
 def choice2():
     global progress
     progress += 1
+    print(progress)
     choice = topic[quesfirst]["option2"]
     if choice == topic[quesfirst]["answer"]:
         btn_option2.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
         btn_option2.config(bg = "#EB270C")
+    btn_quizproceed.pack()
 
 def choice3():
     global progress
     progress += 1
+    print(progress)
     choice = topic[quesfirst]["option3"]
     if choice == topic[quesfirst]["answer"]:
         btn_option3.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
         btn_option3.config(bg = "#EB270C")
+    btn_quizproceed.pack()
 
 def choice4():
     global progress
     progress += 1
+    print(progress)
     choice = topic[quesfirst]["option4"]
     if choice == topic[quesfirst]["answer"]:
         btn_option4.config(bg = "#10EE10")
     elif choice != topic[quesfirst]["answer"]:
         btn_option4.config(bg = "#EB270C")
+    btn_quizproceed.pack()
 
 def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup = Tk() #Creating the hint GUI window
@@ -195,7 +207,7 @@ topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and w
 #DEVELOPER COPY AND PASTE
 #1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-quesorder = [1] #A list of questions
+quesorder = [1, 2, 3, 4] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
 quesfirst = quesorder[0] #Setting variables for each question
@@ -206,13 +218,13 @@ topic = NONE
 
 Emergencies = { #A dictionary for the questions present in topic Emergencies
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic", "answer" : "A police officer"}, #2
-    2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past\nyou can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?"}, #3
-    3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?"}, #4
-    4: {"question" : "If a moving car's front left tire burst, what would happen to the car?", "option1" : "The car will sway from side to side", "option2" : "The car would be pulled towards the left", "option3" : "The car would be pulled towards the right", "option4" : "The car would start spinning", "hint" : "Which side the tire is on directly affects the car"}, #2
+    2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past\nyou can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?", "answer" : "If its siren and/or red flashing lights are on"}, #3
+    3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?", "answer" : "Check for injuries"}, #4
+    4: {"question" : "If a moving car's front left tire burst, what would happen to the car?", "option1" : "The car will sway from side to side", "option2" : "The car would be pulled towards the left", "option3" : "The car would be pulled towards the right", "option4" : "The car would start spinning", "hint" : "Which side the tire is on directly affects the car", "answer" : "The car would be pulled towards the left"}, #2
     5: {"question" : "If you get flash by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light"}, #3
-    6: {"question" : "What will happen if your car hits a body of water from a height?", "option1" : "You will float on the water", "option2" : "You will fall through the water", "option3" : "You will hit water like it was a solid", "option4" : "You will bounce off the water", "hint" : "Think about jumping into a swimming pool"}, #3
-    7: {"question" : "If your car is sinking, how and when should you get out?", "option1" : "Open and escape through a window\nbefore the water is higher than the window", "option2" : "Escape through the boot once the car fills up", "option3" : "Break the front glass as the car is sinking", "option4" : "Use the doors once the car comes to a standstill", "hint" : "Think in terms of water pressure"}, #1
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    6: {"question" : "What will happen if your car hits a body of water from a height?", "option1" : "You will float on the water", "option2" : "You will fall through the water", "option3" : "You will hit water like it was a solid", "option4" : "You will bounce off the water", "hint" : "Think about jumping into a swimming pool", "answer" : ""}, #3
+    7: {"question" : "If your car is sinking, how and when should you get out?", "option1" : "Open and escape through a window\nbefore the water is higher than the window", "option2" : "Escape through the boot once the car fills up", "option3" : "Break the front glass as the car is sinking", "option4" : "Use the doors once the car comes to a standstill", "hint" : "Think in terms of water pressure", "answer" : ""}, #1
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
     9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
     10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
 }
