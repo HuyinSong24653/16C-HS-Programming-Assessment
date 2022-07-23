@@ -83,7 +83,7 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     btn_notes.place(x = 205, y = 20) #Placing it and so on...
     btn_hint = Button(quiz, text = "Hint", font = ("Arial", 18), width = 10, height = 1, command = hintwindow) #Hints window, calls the hintwindow function which will give a hint on the current question in a small hint window
     btn_hint.place(x = 385, y = 20)
-    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1) #A button for the user to end the quiz prior to quiz completion
+    btn_endquiz = Button(quiz, text = "End quiz", font = ("Arial", 18), width = 10, height = 1, command = quizfinish) #A button for the user to end the quiz prior to quiz completion
     btn_endquiz.place(x = 565, y = 20)
     lbl_question = Label(quiz, width = 64, height = 3, font = ("Arial", 15), relief = "groove") #A label for where the question will go
     lbl_question.place(x = 18, y = 100)
@@ -137,10 +137,14 @@ def choice1():
     progress += 1
     print(progress)
     choice = topic[ques]["option1"]
+    global correct
+    global wrong
     if choice == topic[ques]["answer"]:
         btn_option1.config(bg = "#10EE10")
+        correct += 1
     elif choice != topic[ques]["answer"]:
         btn_option1.config(bg = "#EB270C")
+        wrong += 1
     btn_quizproceed.pack()
 
 def choice2():
@@ -148,10 +152,14 @@ def choice2():
     progress += 1
     print(progress)
     choice = topic[ques]["option2"]
+    global correct
+    global wrong
     if choice == topic[ques]["answer"]:
         btn_option2.config(bg = "#10EE10")
+        correct += 1
     elif choice != topic[ques]["answer"]:
         btn_option2.config(bg = "#EB270C")
+        wrong += 1
     btn_quizproceed.pack()
 
 def choice3():
@@ -159,10 +167,14 @@ def choice3():
     progress += 1
     print(progress)
     choice = topic[ques]["option3"]
+    global correct
+    global wrong
     if choice == topic[ques]["answer"]:
         btn_option3.config(bg = "#10EE10")
+        correct += 1
     elif choice != topic[ques]["answer"]:
         btn_option3.config(bg = "#EB270C")
+        wrong += 1
     btn_quizproceed.pack()
 
 def choice4():
@@ -170,10 +182,14 @@ def choice4():
     progress += 1
     print(progress)
     choice = topic[ques]["option4"]
+    global correct
+    global wrong
     if choice == topic[ques]["answer"]:
         btn_option4.config(bg = "#10EE10")
+        correct += 1
     elif choice != topic[ques]["answer"]:
         btn_option4.config(bg = "#EB270C")
+        wrong += 1
     btn_quizproceed.pack()
 
 def progresswindow():
@@ -204,6 +220,11 @@ def notes(): #notes function, called when the user clicked to save their notes
     usernote = str(ent_notes.get("1.0", "end-1c")) #Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
     print(usernote) #DEVELOPER USE, ONLY TO TEST IF 'usernote get' IS WORKING AS INTENDED
     lbl_notesavestatus.config(text = "Saved!") #Configures the save status label to display "Saved!" to let the user know their notes are saved
+
+def quizfinish():
+    quizending = Tk()
+    quizending.title("Well done! Quiz is over, here are your scores")
+    quizending.geometry("600x400")
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
 verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
@@ -240,6 +261,9 @@ random.shuffle(quesorder) #Using random to shuffle the list of questions, making
 progress = 1
 choice = NONE
 topic = NONE
+
+correct = 0
+wrong = 0
 
 Emergencies = { #A dictionary for the questions present in topic Emergencies
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic", "answer" : "A police officer"}, #2
