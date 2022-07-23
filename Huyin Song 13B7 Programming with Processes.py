@@ -2,7 +2,8 @@
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import* #Importing the GUI
-import random #Importing random to use
+import random
+from unicodedata import name #Importing random to use
 
 def verifyage(): #A function that contains the logic for the user's name and age
     try: #Try and except to prevent errors
@@ -53,18 +54,25 @@ def quiztopic(arg): #quiztopic function called from topic selection buttons, tak
     global topicproceedvariable #Setting topicproceedvariable as global to avoid error
     topicproceedvariable = 1 #setting topicproceedvariable as 1
     global topic
+    global topicname
     if arg == 1: #If argument is 1 (user clicked General topic)
         topic = 1 #Set topic as 1 (for General)
+        topicname = "General"
     elif arg == 2: #If argument is 2 (user clicked Emergencies topic), and so on for other topics
         topic = Emergencies #Set topic as Emergencies
+        topicname = "Emergencies"
     elif arg == 3:
         topic = Parking
+        topicname = "Parking"
     elif arg == 4:
         topic = Road
+        topicname = "Road"
     elif arg == 5:
         topic = Rules
+        topicname = "Rules"
     elif arg == 6:
         topic = Driver
+        topicname = "Driver"
     topicselect.destroy() #The program destroys the old topic selection window
     selection() #And calls the selection function, which will create a new topic selection window with the proceed button present, had to do this to avoid a looping logic error
 
@@ -202,6 +210,8 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     lbl_hint = Label(hintpopup) #Establishing a label
     lbl_hint.pack() #Packing the label in
     lbl_hint.config(text = topic[ques]["hint"]) #Configure the hint label inside the hint window to display the 'topic' dictionary's first question's hint
+    global hintuses
+    hintuses += 1
 
 def noteswindow():
     notespopup = Tk() #Creating the notes GUI window
@@ -217,6 +227,7 @@ def noteswindow():
     lbl_notesavestatus.place(x = 300, y = 313) #Placing it in a easy to see spot
 
 def notes(): #notes function, called when the user clicked to save their notes
+    global usernote
     usernote = str(ent_notes.get("1.0", "end-1c")) #Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
     print(usernote) #DEVELOPER USE, ONLY TO TEST IF 'usernote get' IS WORKING AS INTENDED
     lbl_notesavestatus.config(text = "Saved!") #Configures the save status label to display "Saved!" to let the user know their notes are saved
@@ -224,7 +235,20 @@ def notes(): #notes function, called when the user clicked to save their notes
 def quizfinish():
     quizending = Tk()
     quizending.title("Well done! Quiz is over, here are your scores")
-    quizending.geometry("600x400")
+    quizending.geometry("410x365")
+
+    lbl_endtopic = Label(quizending, text = "Topic tested on: {}".format(topicname), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endtopic.place(x = 10, y = 10)
+    lbl_endprogress = Label(quizending, text = "Progress: {}/10".format(progress), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endprogress.place(x = 220, y = 10)
+    lbl_endcorrect = Label(quizending, text = "Num. Correct answers: {}/10".format(correct), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endcorrect.place(x = 10, y = 70)
+    lbl_endwrong = Label(quizending, text = "Num. Wrong answers: {}/10".format(wrong), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endwrong.place(x = 220, y = 70)
+    lbl_endhintsused = Label(quizending, text = "Num. Hints used: {}".format(hintuses), width = 25, height = 2, bg = "#67fcd0")
+    lbl_endhintsused.place(x = 10, y = 130)
+    lbl_endnotes = Label(quizending, text = usernote, bg = "#67fcd0", font = ("Arial", 10), width = 48, height = 10)
+    lbl_endnotes.place(x = 10, y = 190)
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
 verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
@@ -261,9 +285,11 @@ random.shuffle(quesorder) #Using random to shuffle the list of questions, making
 progress = 1
 choice = NONE
 topic = NONE
-
+topicname = NONE
 correct = 0
 wrong = 0
+hintuses = 0
+usernote = NONE
 
 Emergencies = { #A dictionary for the questions present in topic Emergencies
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic", "answer" : "A police officer"}, #2
