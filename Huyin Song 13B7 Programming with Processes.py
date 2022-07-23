@@ -76,7 +76,8 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     quiz.title("Quiz Window") #Naming it
     quiz.geometry("750x750") #Setting the sizes
 
-    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1) #Button for the user, will show current quiz progress
+    global btn_progress
+    btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1, command = progresswindow) #Button for the user, will show current quiz progress
     btn_progress.place(x = 25, y = 20) #Places it at the top of the GUI
     btn_notes = Button(quiz, text = "Notes", font = ("Arial", 18), width = 10, height = 1, command = noteswindow) #Notes button, will call noteswindow function to create new window for the user's notes
     btn_notes.place(x = 205, y = 20) #Placing it and so on...
@@ -175,10 +176,13 @@ def choice4():
         btn_option4.config(bg = "#EB270C")
     btn_quizproceed.pack()
 
+def progresswindow():
+    btn_progress.config(text = "{}/10".format(progress))
+
 def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup = Tk() #Creating the hint GUI window
     hintpopup.title("Hint!") #Naming the hint GUI window as "Hint!"
-    hintpopup.geometry("250x100") #Setting the size of the window
+    hintpopup.geometry("300x35") #Setting the size of the window
     lbl_hint = Label(hintpopup) #Establishing a label
     lbl_hint.pack() #Packing the label in
     lbl_hint.config(text = topic[ques]["hint"]) #Configure the hint label inside the hint window to display the 'topic' dictionary's first question's hint
