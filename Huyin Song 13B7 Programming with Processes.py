@@ -273,14 +273,7 @@ btn_age.place(x = 100, y = 100)
 
 btn_verifproceed = Button(verification, text = "Proceed with program", bg = "#67fcd0", command = selection) #A button note present yet, this appears after name and age verified, takes user to topic selection
 
-#DEVELOPER SHORTCUT
-btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection) #A button only meant for the developer(me) to use, will be removed upon program completion
-btn_dev.pack() #Simply packing it onto the GUI, may change location later
-
 topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and will update to 1
-
-#DEVELOPER COPY AND PASTE
-#1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
 quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
