@@ -42,8 +42,6 @@ def selection(): #A function for the topic selecting page
     btn_road.place(x = 200, y = 180)
     btn_rules = Button(topicselect, text = "Rules", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(5))
     btn_rules.place(x = 25, y = 275)
-    btn_driver = Button(topicselect, text = "Driver", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(6))
-    btn_driver.place(x = 200, y = 275)
     btn_topicproceed = Button(topicselect, text = "Proceed with quiz", width = 14, height = 3, font = ("Arial", 12), bg = "#67fcd0", command = quizpage) #Establishing a proceeding button for the user once topic is selected, calls quizpage function
 
     if topicproceedvariable == 1: #If topicproceedvariable = 1 (user has already chosen their topic, and is calling this function a second time)
@@ -69,9 +67,6 @@ def quiztopic(arg): #quiztopic function called from topic selection buttons, tak
     elif arg == 5:
         topic = Rules
         topicname = "Rules"
-    elif arg == 6:
-        topic = Driver
-        topicname = "Driver"
     topicselect.destroy() #The program destroys the old topic selection window
     selection() #And calls the selection function, which will create a new topic selection window with the proceed button present, had to do this to avoid a looping logic error
 
@@ -326,40 +321,27 @@ Parking = { #'Parking' topic dictionary
 Road = { #'Road' topic dictionary
     1: {"question" : "Which road may cause the most damage to oncoming traffic?", "option1" : "Grassy/Offroad roads", "option2" : "Concrete roads", "option3" : "Asphalt roads", "option4" : "Unsealed/pebble rock roads", "hint" : "Which road may cause flying objects?", "answer" : "Unsealed/pebble rock roads"}, #4
     2: {"question" : "What is the general rule of priority for T intersections?", "option1" : "The turning cars always have priority", "option2" : "As long as indicators are used, everybody can go", "option3" : "It doesn't matter.\ntraffic lights control T intersections", "option4" : "The straight road has right of way", "hint" : "Think what might happen if...", "answer" : "The straight road has right of way"}, #4
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    3: {"question" : "Who do you give way to in a roundabout?", "option1" : "Nobody", "option2" : "The left", "option3" : "The right", "option4" : "There will be traffic lights", "hint" : "Oncoming traffic", "answer" : "The right"}, #3
+    4: {"question" : "What do you do as you leave a roundabout?", "option1" : "Indicate left", "option2" : "Indicate right", "option3" : "No need to indicate", "option4" : "Flash your lights", "hint" : "Show you are taking the exit", "answer" : "Indicate left"}, #1
+    5: {"question" : "What must you do at an intersection controlled by a stop sign?", "option1" : "Slow to a stop", "option2" : "Just needs to slow down", "option3" : "Park there", "option4" : "Only stop if there are other people", "hint" : "The answer is in the name", "answer" : "Slow to a stop"}, #1
+    6: {"question" : "What's the most important rule for approaching an intersection?", "option1" : "Indicate for atleast a second", "option2" : "Be prepared to stop", "option3" : "Use your horn to warn others", "option4" : "Flash your lights to worn others", "hint" : "Safety first", "answer" : "Be prepared to stop"}, #2
+    7: {"question" : "What do you do if there is a marked left arrow on your lane's ground?", "option1" : "Turn left", "option2" : "Go straight", "option3" : "Turn right", "option4" : "No need to indicate", "hint" : "The answer is in the arrow", "answer" : "Turn left"}, #1
+    8: {"question" : "What do you do if there is a marked right arrow on your lane's ground?", "option1" : "Turn left", "option2" : "Go straight", "option3" : "Turn right", "option4" : "No need to indicate", "hint" : "The answer is in the arrow", "answer" : "Turn right"}, #3
+    9: {"question" : "What do you do if there is a marked straight arrow on your lane's ground?", "option1" : "Turn left", "option2" : "Go straight", "option3" : "Turn right", "option4" : "No need to indicate", "hint" : "The answer is in the arrow", "answer" : "Go straight"}, #2
+    10: {"question" : "How far can a private vehicle (car, motorbike or truck) drive in a bus only lane?", "option1" : "25m", "option2" : "50m", "option3" : "75m", "option4" : "100m", "hint" : "A decent distance, but not too far", "answer" : "50m"}, #2
 }
 
 Rules = { #'Rules' topic dictionary
     1: {"question" : "What does a white sign with a red circle around 60 mean?", "option1" : "All cars must drive faster than 60km/h", "option2" : "The speed limit is 60km/h", "option3" : "Your average speed should be around 60km/h", "option4" : "60km/h speed limit only for civilian vehicles", "hint" : "Too obvious, read road code again", "answer" : "The speed limit is 60km/h"}, #2
     2: {"question" : "Can restricted licensed drivers bring passengers?", "option1" : "No, absolutely not", "option2" : "Yes, they can bring anyone", "option3" : "Only with supervision, and special cases without", "option4" : "As long as your passengers have full licence", "hint" : "The freedom doesn't come until full license", "answer" : "Only with supervision, and special cases without"}, #3
     3: {"question" : "Can you drink and drive while under 16 years of age?", "option1" : "As long as your friends say it's going to be fine", "option2" : "Drink water first to dilute alcohol", "option3" : "No, shouldn't be drinking anyway", "option4" : "Yes, only if alcohol is under acceptable limits", "hint" : "Think in terms of drinking age limit", "answer" : "No, shouldn't be drinking anyway"}, #3
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-}
-
-Driver = { #'Driver' topic dictionary
-    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    4: {"question" : "What is the minimum tread depth required for car tyres?", "option1" : "1mm", "option2" : "2mm", "option3" : "3mm", "option4" : "1.5mm", "hint" : "Between 1mm and 3mm, not inclusive", "answer" : "1.5mm"}, #4
+    5: {"question" : "Driving a car and trailer with full licence, what is weight limit?", "option1" : "4000kg", "option2" : "5000kg", "option3" : "6000kg", "option4" : "7000kg", "hint" : "Quite a lot, but not too much", "answer" : "6000kg"}, #3
+    6: {"question" : "You are carring a load that is not properly secured, what are you allowed to do?", "option1" : "You can drive until your destination", "option2" : "Cannot drive until it is secured", "option3" : "You can drive for 200 meters", "option4" : "You can drive for 2 kilometers", "hint" : "The obvious", "answer" : "Cannot drive until it is secured"}, #2
+    7: {"question" : "If you are driving with a space saver wheel, what must you do?", "option1" : "The space saver wheel is no different, do whatever", "option2" : "Drive under 80km/h\nto a place you can fix the wheel", "option3" : "Only drive under 100km/h", "option4" : "Only drive under 60km/h", "hint" : "The space saver wheel is not incredible", "answer" : "Drive under 80km/h\nto a place you can fix the wheel"}, #2
+    8: {"question" : "What is the maximum distance a load may overhang your vehicle behind the rear axle?", "option1" : "1m", "option2" : "2m", "option3" : "3m", "option4" : "4m", "hint" : "Quite a large distance", "answer" : "4m"}, #4
+    9: {"question" : "What should you do before any modification is carried out on your vehicle?", "option1" : "Its all OK as long as\nits from a reputable seller", "option2" : "Check with an authorised vehicle inspector", "option3" : "Get a certificate with the police", "option4" : "All modifications are not okay", "hint" : "Someone needs to check", "answer" : "Check with an authorised vehicle inspector"}, #2
+    10: {"question" : "Which person can legally stop and perform a roadside check of your vehicle?", "option1" : "Ambulance driver", "option2" : "Police officer", "option3" : "Tow truck driver", "option4" : "Nobody", "hint" : "These guys have lots of authority", "answer" : "Police officer"}, #2
 }
 
 verification.mainloop()
