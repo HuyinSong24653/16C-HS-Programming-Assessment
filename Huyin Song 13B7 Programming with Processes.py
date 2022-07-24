@@ -81,7 +81,7 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     global quiz
     quiz = Tk() #Creating the quiz/test window
     quiz.title("Quiz Window") #Naming it
-    quiz.geometry("750x750") #Setting the sizes
+    quiz.geometry("750x550") #Setting the sizes
 
     global btn_progress
     btn_progress = Button(quiz, text = "Progress", font = ("Arial", 18), width = 10, height = 1, command = progresswindow) #Button for the user, will show current quiz progress
@@ -96,27 +96,27 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     lbl_question.place(x = 18, y = 100)
     global btn_option1 #Setting global so I can edit later
     btn_option1 = Button(quiz, width = 45, height = 6, command = choice1) #A button for the user's first option
-    btn_option1.place(x = 20, y = 500)
+    btn_option1.place(x = 20, y = 200)
     global btn_option2
-    btn_option2 = Button(quiz, width = 45, height = 6, command = choice2) #A buutton for the user's second option, and so on...
-    btn_option2.place(x = 400, y = 500)
+    btn_option2 = Button(quiz, width = 45, height = 6, command = choice2) #A button for the user's second option, and so on...
+    btn_option2.place(x = 400, y = 200)
     global btn_option3
     btn_option3 = Button(quiz, width = 45, height = 6, command = choice3)
-    btn_option3.place(x = 20, y = 625)
+    btn_option3.place(x = 20, y = 325)
     global btn_option4
     btn_option4 = Button(quiz, width = 45, height = 6, command = choice4)
-    btn_option4.place(x = 400, y = 625)
+    btn_option4.place(x = 400, y = 325)
 
     global btn_quizproceed
-    btn_quizproceed = Button(quiz, text = "Do you wish to proceed?", width = 15, height = 3, bg = "#67fcd0", command = quizpage)
+    btn_quizproceed = Button(quiz, text = "Do you wish to proceed?", width = 25, height = 4, bg = "#67fcd0", command = quizpage) #A button for when the user answers a question, will bring them to next question
 
     global ques
-    if progress == 1:
-        ques = quesorder[0]
-    elif progress == 2:
-        ques = quesorder[1]
-    elif progress == 3:
-        ques = quesorder[2]
+    if progress == 1: #If progress == 1 (first question)
+        ques = quesorder[0] #Set question to the first value in the shuffled list
+    elif progress == 2: #If progress == 2 (second question)
+        ques = quesorder[1] #Set question to the second value in the shuffled list
+    elif progress == 3: #And so on...
+        ques = quesorder[2] #And so on...
     elif progress == 4:
         ques = quesorder[3]
     elif progress == 5:
@@ -138,21 +138,21 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     btn_option3.config(text = topic[ques]["option3"])
     btn_option4.config(text = topic[ques]["option4"])
 
-def choice1():
+def choice1(): #Function for if the user clicked the first option
     global progress
-    progress += 1
-    choice = topic[ques]["option1"]
+    progress += 1 #Set progress to progress + 1
+    choice = topic[ques]["option1"] #choice variable is equal to the first options's values
     global correct
     global wrong
-    if choice == topic[ques]["answer"]:
-        btn_option1.config(bg = "#10EE10")
-        correct += 1
-    elif choice != topic[ques]["answer"]:
-        btn_option1.config(bg = "#EB270C")
-        wrong += 1
-    btn_quizproceed.pack()
+    if choice == topic[ques]["answer"]: #if user's choice/answer is equal/correct to the question's answer
+        btn_option1.config(bg = "#10EE10") #Config the button pressed to green indicating correct choice
+        correct += 1 #Set correct variable to correct + 1
+    elif choice != topic[ques]["answer"]: #If user's choice is not equal to question's answer
+        btn_option1.config(bg = "#EB270C") #Set the button pressed to a red colour indicating incorrect/wrong answer
+        wrong += 1 #Set wrong variable to wrong + 1
+    btn_quizproceed.place(x = 275, y = 450) #Place the proceed to next question button
 
-def choice2():
+def choice2(): #Function for second option, functions nearly identically to first option
     global progress
     progress += 1
     choice = topic[ques]["option2"]
@@ -164,9 +164,9 @@ def choice2():
     elif choice != topic[ques]["answer"]:
         btn_option2.config(bg = "#EB270C")
         wrong += 1
-    btn_quizproceed.pack()
+    btn_quizproceed.place(x = 275, y = 450)
 
-def choice3():
+def choice3(): #3rd option
     global progress
     progress += 1
     choice = topic[ques]["option3"]
@@ -178,9 +178,9 @@ def choice3():
     elif choice != topic[ques]["answer"]:
         btn_option3.config(bg = "#EB270C")
         wrong += 1
-    btn_quizproceed.pack()
+    btn_quizproceed.place(x = 275, y = 450)
 
-def choice4():
+def choice4(): #And 4th option
     global progress
     progress += 1
     choice = topic[ques]["option4"]
@@ -192,10 +192,10 @@ def choice4():
     elif choice != topic[ques]["answer"]:
         btn_option4.config(bg = "#EB270C")
         wrong += 1
-    btn_quizproceed.pack()
+    btn_quizproceed.place(x = 275, y = 450)
 
-def progresswindow():
-    btn_progress.config(text = "{}/10".format(progress))
+def progresswindow(): #Function for when progress button is clicked
+    btn_progress.config(text = "{}/10".format(progress)) #Configs the progress button to display currect progress out of 10 questions
 
 def hintwindow(): #When the hint button is pressed, it runs this function
     hintpopup = Tk() #Creating the hint GUI window
@@ -205,7 +205,7 @@ def hintwindow(): #When the hint button is pressed, it runs this function
     lbl_hint.pack() #Packing the label in
     lbl_hint.config(text = topic[ques]["hint"]) #Configure the hint label inside the hint window to display the 'topic' dictionary's first question's hint
     global hintuses
-    hintuses += 1
+    hintuses += 1 #Everytime user accesses a hint, set hintuses to hintuses + 1, to count how many times hints were used
 
 def noteswindow():
     notespopup = Tk() #Creating the notes GUI window
@@ -225,43 +225,43 @@ def notes(): #notes function, called when the user clicked to save their notes
     usernote = str(ent_notes.get("1.0", "end-1c")) #Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
     lbl_notesavestatus.config(text = "Saved!") #Configures the save status label to display "Saved!" to let the user know their notes are saved
 
-def quizfinish():
-    quizending = Tk()
-    quizending.title("Well done! Quiz is over, here are your scores")
-    quizending.geometry("410x365")
+def quizfinish(): #Function for when the user ends the quiz
+    quizending = Tk() #Establish the quizending qindow
+    quizending.title("Well done! Quiz is over, here are your scores") #Message/title for the window
+    quizending.geometry("410x365") #Setting size
 
-    lbl_endtopic = Label(quizending, text = "Topic tested on: {}".format(topicname), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
+    lbl_endtopic = Label(quizending, text = "Topic tested on: {}".format(topicname), width = 25, height = 2, bg = "#67fcd0", relief = "groove") #Label displaying the topic the user just tested on
     lbl_endtopic.place(x = 10, y = 10)
-    lbl_endprogress = Label(quizending, text = "Progress: {}/10".format(progress), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
+    lbl_endprogress = Label(quizending, text = "Progress: {}/10".format(progress), width = 25, height = 2, bg = "#67fcd0", relief = "groove") #Displays the progress out of 10 questions
     lbl_endprogress.place(x = 220, y = 10)
-    lbl_endcorrect = Label(quizending, text = "Num. Correct answers: {}/10".format(correct), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
+    lbl_endcorrect = Label(quizending, text = "Num. Correct answers: {}/10".format(correct), width = 25, height = 2, bg = "#67fcd0", relief = "groove") #Displays the number of correct answers out of 10 questions
     lbl_endcorrect.place(x = 10, y = 70)
-    lbl_endwrong = Label(quizending, text = "Num. Wrong answers: {}/10".format(wrong), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
+    lbl_endwrong = Label(quizending, text = "Num. Wrong answers: {}/10".format(wrong), width = 25, height = 2, bg = "#67fcd0", relief = "groove") #Shows number of wrong answers out of 10 questions
     lbl_endwrong.place(x = 220, y = 70)
-    lbl_endhintsused = Label(quizending, text = "Num. Hints used: {}".format(hintuses), width = 25, height = 2, bg = "#67fcd0", relief = "groove")
+    lbl_endhintsused = Label(quizending, text = "Num. Hints used: {}".format(hintuses), width = 25, height = 2, bg = "#67fcd0", relief = "groove") #Shows the number of hints used throughout their quiz
     lbl_endhintsused.place(x = 10, y = 130)
-    lbl_endnotes = Label(quizending, text = usernote, bg = "#67fcd0", font = ("Arial", 10), width = 48, height = 10, wraplength = 380, justify = "center", relief = "groove")
+    lbl_endnotes = Label(quizending, text = usernote, bg = "#67fcd0", font = ("Arial", 10), width = 48, height = 10, wraplength = 380, justify = "center", relief = "groove") #Displays the notes written during their quiz, will display "none" if nothing were wrote
     lbl_endnotes.place(x = 10, y = 190)
 
 verification = Tk() #Creating the first GUI window the user will see, this will check the user's verification and welcomes them if they meet the requirements
 verification.title("Verifications window") #Setting the GUI's title, otherwise will just be "tk"
 verification.geometry("350x350") #Setting the size of the GUI window
 
-lbl_verifage = Label(verification)
+lbl_verifage = Label(verification) #Label used to give information regarding verification, is empty now but is configured once verification button is pressed
 lbl_verifage.place(x = 20, y = 200)
 
-lbl_name = Label(verification, text = "What is your name?")
+lbl_name = Label(verification, text = "What is your name?") #Asking user's name
 lbl_name.place(x = 20, y = 20)
-lbl_age = Label(verification, text = "What is your age?")
+lbl_age = Label(verification, text = "What is your age?") #Asking user's age
 lbl_age.place(x = 20, y = 60)
-ent_name = Entry(verification)
+ent_name = Entry(verification) #A entry box for user to input their name
 ent_name.place(x = 150, y = 20)
-ent_age = Entry(verification)
+ent_age = Entry(verification) #Then their age
 ent_age.place(x = 150, y = 60)
-btn_age = Button(verification, text = "Verify your age!", bg = "#67fcd0", command = verifyage)
+btn_age = Button(verification, text = "Verify your age!", bg = "#67fcd0", command = verifyage) #A button for the user's to verify after they have inputted name and age
 btn_age.place(x = 100, y = 100)
 
-btn_verifproceed = Button(verification, text = "Proceed with program", bg = "#67fcd0", command = selection)
+btn_verifproceed = Button(verification, text = "Proceed with program", bg = "#67fcd0", command = selection) #A button note present yet, this appears after name and age verified, takes user to topic selection
 
 #DEVELOPER SHORTCUT
 btn_dev = Button(verification, text = "dev", bg = "#67fcd0", command = selection) #A button only meant for the developer(me) to use, will be removed upon program completion
@@ -275,7 +275,7 @@ topicproceedvariable = 0 #Used this to fix some looping logic, starts at 0 and w
 quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #A list of questions
 random.shuffle(quesorder) #Using random to shuffle the list of questions, making questions randomly generated
 
-progress = 1
+progress = 1 #Establishing and setting different variables to 1, 0, or NONE
 choice = NONE
 topic = NONE
 topicname = NONE
@@ -284,7 +284,7 @@ wrong = 0
 hintuses = 0
 usernote = NONE
 
-General = {
+General = { #'General' topic dictionary
     1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
     2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
@@ -297,7 +297,7 @@ General = {
     10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
-Emergencies = { #A dictionary for the questions present in topic Emergencies
+Emergencies = { #'Emergencies' topic dictionary
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic", "answer" : "A police officer"}, #2
     2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past\nyou can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?", "answer" : "If its siren and/or red flashing lights are on"}, #3
     3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?", "answer" : "Check for injuries"}, #4
@@ -310,7 +310,7 @@ Emergencies = { #A dictionary for the questions present in topic Emergencies
     10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
-Parking = {
+Parking = { #'Parking' topic dictionary
     1: {"question" : "How far should you part from someone's driveway?", "option1" : "1 meter", "option2" : "2 meters", "option3" : "5 meters", "option4" : "0.5 meters", "hint" : "A decent distance, but not excessive", "answer" : "1 meter"}, #1
     2: {"question" : "Ethically, should you park very close behind someone else?", "option1" : "Yeah sure, no big deal", "option2" : "Only if they can drive out through the front", "option3" : "No, you should never", "option4" : "Only for smaller cars", "hint" : "Try to be thoughtful and think 'just in case'", "answer" : "Only if they can drive out through the front"}, #2
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
@@ -323,7 +323,7 @@ Parking = {
     10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
-Road = {
+Road = { #'Road' topic dictionary
     1: {"question" : "Which road may cause the most damage to oncoming traffic?", "option1" : "Grassy/Offroad roads", "option2" : "Concrete roads", "option3" : "Asphalt roads", "option4" : "Unsealed/pebble rock roads", "hint" : "Which road may cause flying objects?", "answer" : "Unsealed/pebble rock roads"}, #4
     2: {"question" : "What is the general rule of priority for T intersections?", "option1" : "The turning cars always have priority", "option2" : "As long as indicators are used, everybody can go", "option3" : "It doesn't matter.\ntraffic lights control T intersections", "option4" : "The straight road has right of way", "hint" : "Think what might happen if...", "answer" : "The straight road has right of way"}, #4
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
@@ -336,7 +336,7 @@ Road = {
     10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
-Rules = {
+Rules = { #'Rules' topic dictionary
     1: {"question" : "What does a white sign with a red circle around 60 mean?", "option1" : "All cars must drive faster than 60km/h", "option2" : "The speed limit is 60km/h", "option3" : "Your average speed should be around 60km/h", "option4" : "60km/h speed limit only for civilian vehicles", "hint" : "Too obvious, read road code again", "answer" : "The speed limit is 60km/h"}, #2
     2: {"question" : "Can restricted licensed drivers bring passengers?", "option1" : "No, absolutely not", "option2" : "Yes, they can bring anyone", "option3" : "Only with supervision, and special cases without", "option4" : "As long as your passengers have full licence", "hint" : "The freedom doesn't come until full license", "answer" : "Only with supervision, and special cases without"}, #3
     3: {"question" : "Can you drink and drive while under 16 years of age?", "option1" : "As long as your friends say it's going to be fine", "option2" : "Drink water first to dilute alcohol", "option3" : "No, shouldn't be drinking anyway", "option4" : "Yes, only if alcohol is under acceptable limits", "hint" : "Think in terms of drinking age limit", "answer" : "No, shouldn't be drinking anyway"}, #3
@@ -349,7 +349,7 @@ Rules = {
     10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
-Driver = {
+Driver = { #'Driver' topic dictionary
     1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
     2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
     3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
