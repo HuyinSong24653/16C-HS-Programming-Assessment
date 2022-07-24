@@ -105,6 +105,8 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     global btn_quizproceed
     btn_quizproceed = Button(quiz, text = "Do you wish to proceed?", width = 25, height = 4, bg = "#67fcd0", command = quizpage) #A button for when the user answers a question, will bring them to next question
 
+    lbl_quizend = Label(quiz, text = "The quiz is over\nplease end the quiz")
+
     global ques
     if progress == 1: #If progress == 1 (first question)
         ques = quesorder[0] #Set question to the first value in the shuffled list
@@ -126,6 +128,8 @@ def quizpage(): #A function for the actual testing page, called from the topic p
         ques = quesorder[8]
     elif progress == 10:
         ques = quesorder[9]
+    elif progress > 10:
+        lbl_quizend.place(x = 500, y = 465)
 
     lbl_question.config(text = topic[ques]["question"]) #Configure the question label to display 'topic' dictionary's first question's question
     btn_option1.config(text = topic[ques]["option1"]) #Configure the first option button to display 'topic' dictionary's first question's first option
