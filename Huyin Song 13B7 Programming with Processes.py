@@ -2,8 +2,7 @@
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import* #Importing the GUI
-import random
-from unicodedata import name #Importing random to use
+import random #Importing random to use
 
 def verifyage(): #A function that contains the logic for the user's name and age
     try: #Try and except to prevent errors
@@ -56,7 +55,7 @@ def quiztopic(arg): #quiztopic function called from topic selection buttons, tak
     global topic
     global topicname
     if arg == 1: #If argument is 1 (user clicked General topic)
-        topic = 1 #Set topic as 1 (for General)
+        topic = General #Set topic as 1 (for General)
         topicname = "General"
     elif arg == 2: #If argument is 2 (user clicked Emergencies topic), and so on for other topics
         topic = Emergencies #Set topic as Emergencies
@@ -285,69 +284,82 @@ wrong = 0
 hintuses = 0
 usernote = NONE
 
+General = {
+    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+}
+
 Emergencies = { #A dictionary for the questions present in topic Emergencies
     1: {"question" : "Who can put a blue sign up?", "option1" : "An ambulance driver", "option2" : "A police officer", "option3" : "A council officer", "option4" : "A member of the public", "hint" : "Blue signs are compulsary\nplaced by people with control over traffic", "answer" : "A police officer"}, #2
     2: {"question" : "When must you pull over and allow an ambulance or fire engine to pass?", "option1" : "If it is travelling faster than you want to", "option2" : "You don't need to let it past\nyou can speed up so you're not holding it up", "option3" : "If its siren and/or red flashing lights are on", "option4" : "At all times", "hint" : "Only when urgent, what shows urgency?", "answer" : "If its siren and/or red flashing lights are on"}, #3
     3: {"question" : "If you get into a collision, what would be the first step you would take?", "option1" : "Call the police", "option2" : "Call the ambulance", "option3" : "Call your insurance company", "option4" : "Check for injuries", "hint" : "What is most important?", "answer" : "Check for injuries"}, #4
     4: {"question" : "If a moving car's front left tire burst, what would happen to the car?", "option1" : "The car will sway from side to side", "option2" : "The car would be pulled towards the left", "option3" : "The car would be pulled towards the right", "option4" : "The car would start spinning", "hint" : "Which side the tire is on directly affects the car", "answer" : "The car would be pulled towards the left"}, #2
-    5: {"question" : "If you get flashed by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light"}, #3
-    6: {"question" : "What will happen if your car hits a body of water from a height?", "option1" : "You will float on the water", "option2" : "You will fall through the water", "option3" : "You will hit water like it was a solid", "option4" : "You will bounce off the water", "hint" : "Think about jumping into a swimming pool", "answer" : ""}, #3
-    7: {"question" : "If your car is sinking, how and when should you get out?", "option1" : "Open and escape through a window\nbefore the water is higher than the window", "option2" : "Escape through the boot once the car fills up", "option3" : "Break the front glass as the car is sinking", "option4" : "Use the doors once the car comes to a standstill", "hint" : "Think in terms of water pressure", "answer" : ""}, #1
+    5: {"question" : "If you get flashed by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light", "answer" : "Bottom left"}, #3
+    6: {"question" : "What will happen if your car hits a body of water from a height?", "option1" : "You will float on the water", "option2" : "You will fall through the water", "option3" : "You will hit water like it was a solid", "option4" : "You will bounce off the water", "hint" : "Think about jumping into a swimming pool", "answer" : "You will hit water like it was a solid"}, #3
+    7: {"question" : "If your car is sinking, how and when should you get out?", "option1" : "Open and escape through a window\nbefore the water is higher than the window", "option2" : "Escape through the boot once the car fills up", "option3" : "Break the front glass as the car is sinking", "option4" : "Use the doors once the car comes to a standstill", "hint" : "Think in terms of water pressure", "answer" : "Open and escape through a window\nbefore the water is higher than the window"}, #1
     8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
 Parking = {
     1: {"question" : "How far should you part from someone's driveway?", "option1" : "1 meter", "option2" : "2 meters", "option3" : "5 meters", "option4" : "0.5 meters", "hint" : "A decent distance, but not excessive", "answer" : "1 meter"}, #1
-    2: {"question" : "Ethically, should you park very close behind someone else?", "option1" : "Yeah sure, no big deal", "option2" : "Only if they can drive out through the front", "option3" : "No, you should never", "option4" : "Only for smaller cars", "hint" : "Try to be thoughtful and think 'just in case'"}, #2
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    2: {"question" : "Ethically, should you park very close behind someone else?", "option1" : "Yeah sure, no big deal", "option2" : "Only if they can drive out through the front", "option3" : "No, you should never", "option4" : "Only for smaller cars", "hint" : "Try to be thoughtful and think 'just in case'", "answer" : "Only if they can drive out through the front"}, #2
+    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
 Road = {
     1: {"question" : "Which road may cause the most damage to oncoming traffic?", "option1" : "Grassy/Offroad roads", "option2" : "Concrete roads", "option3" : "Asphalt roads", "option4" : "Unsealed/pebble rock roads", "hint" : "Which road may cause flying objects?", "answer" : "Unsealed/pebble rock roads"}, #4
-    2: {"question" : "What is the general rule of priority for T intersections?", "option1" : "The turning cars always have priority", "option2" : "As long as indicators are used, everybody can go", "option3" : "It doesn't matter.\ntraffic lights control T intersections", "option4" : "The straight road has right of way", "hint" : "Think what might happen if..."}, #4
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    2: {"question" : "What is the general rule of priority for T intersections?", "option1" : "The turning cars always have priority", "option2" : "As long as indicators are used, everybody can go", "option3" : "It doesn't matter.\ntraffic lights control T intersections", "option4" : "The straight road has right of way", "hint" : "Think what might happen if...", "answer" : "The straight road has right of way"}, #4
+    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
 Rules = {
     1: {"question" : "What does a white sign with a red circle around 60 mean?", "option1" : "All cars must drive faster than 60km/h", "option2" : "The speed limit is 60km/h", "option3" : "Your average speed should be around 60km/h", "option4" : "60km/h speed limit only for civilian vehicles", "hint" : "Too obvious, read road code again", "answer" : "The speed limit is 60km/h"}, #2
-    2: {"question" : "Can restricted licensed drivers bring passengers?", "option1" : "No, absolutely not", "option2" : "Yes, they can bring anyone", "option3" : "Only with supervision, and special cases without", "option4" : "As long as your passengers have full licence", "hint" : "The freedom doesn't come until full license"}, #3
-    3: {"question" : "Can you drink and drive while under 16 years of age?", "option1" : "As long as your friends say it's going to be fine", "option2" : "Drink water first to dilute alcohol", "option3" : "No, shouldn't be drinking anyway", "option4" : "Yes, only if alcohol is under acceptable limits", "hint" : "Think in terms of drinking age limit"}, #3
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    2: {"question" : "Can restricted licensed drivers bring passengers?", "option1" : "No, absolutely not", "option2" : "Yes, they can bring anyone", "option3" : "Only with supervision, and special cases without", "option4" : "As long as your passengers have full licence", "hint" : "The freedom doesn't come until full license", "answer" : "Only with supervision, and special cases without"}, #3
+    3: {"question" : "Can you drink and drive while under 16 years of age?", "option1" : "As long as your friends say it's going to be fine", "option2" : "Drink water first to dilute alcohol", "option3" : "No, shouldn't be drinking anyway", "option4" : "Yes, only if alcohol is under acceptable limits", "hint" : "Think in terms of drinking age limit", "answer" : "No, shouldn't be drinking anyway"}, #3
+    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
 Driver = {
-    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : ""}, #
+    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
 }
 
 verification.mainloop()
