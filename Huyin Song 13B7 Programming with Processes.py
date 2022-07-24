@@ -285,16 +285,16 @@ hintuses = 0
 usernote = NONE
 
 General = { #'General' topic dictionary
-    1: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    2: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    1: {"question" : "What rule should you use to judge a safe following distance in wet or frosty conditions if driving a car?", "option1" : "Two-second rule", "option2" : "Four-second rule", "option3" : "100 meter rule", "option4" : "Six-second rule", "hint" : "The answer involves time", "answer" : "Four-second rule"}, #2
+    2: {"question" : "Your vehicle has a current Warrant of Fitness but a rear red stop light is not working. What should you do?", "option1" : "You can drive with it until your next WOF", "option2" : "You must fix it immediately", "option3" : "Only use the vehicle during daylight hours", "option4" : "You have 48 hours to drive until it needs fixing", "hint" : "Rear stop lights are crucial", "answer" : "You must fix it immediately"}, #2
+    3: {"question" : "If you're under 20 and you're caught with any level of blood alcohol by the police, what is the minimum penalty?", "option1" : "$200 fine and 50 demerit points", "option2" : "Your licence will be suspended", "option3" : "$100 fine and 35 demerit points", "option4" : "Nothing on the first offence", "hint" : "Not either extremes", "answer" : "$200 fine and 50 demerit points"}, #1
+    4: {"question" : "What does a blue sign with a person walking mean?", "option1" : "Dance classes ahead", "option2" : "No route for pedestrians", "option3" : "A route for motorists only", "option4" : "A route for pedestrians only", "hint" : "Definitely not 'Dance classes ahead'", "answer" : "A route for pedestrians only"}, #4
+    5: {"question" : "When should you apply the four-second rule?", "option1" : "If your brakes are almost worn out", "option2" : "If the road is wet or frosty\nor you are towing a trailer", "option3" : "If you are travelling faster than 100km/h", "option4" : "Driving at night", "hint" : "When the road limits your abilities", "answer" : "If the road is wet or frosty\nor you are towing a trailer"}, #2
+    6: {"question" : "What class of licence do you need to drive a car?", "option1" : "Class 1", "option2" : "Class 2", "option3" : "Class A", "option4" : "Class B", "hint" : "It's a number", "answer" : "Class 1"}, #1
+    7: {"question" : "Which part of the car prevents too much sound and gas from entering the car?", "option1" : "Windows", "option2" : "Exhaust and silencer", "option3" : "Heater and AC", "option4" : "Mudguards and mud flaps", "hint" : "Definitely not mudgaurds and mud flaps", "answer" : "Exhaust and silencer"}, #2
+    8: {"question" : "What should you do when you want to turn left?", "option1" : "Give 3 seconds warning by indicating", "option2" : "Give 2 seconds warning by indicating", "option3" : "No need to indicate if no one is behind you", "option4" : "Give 1 second of warning by indicating", "hint" : "Always indicate when turning", "answer" : "Give 3 seconds warning by indicating"}, #1
+    9: {"question" : "What must be displayed on the back of a trailer being towed at night?", "option1" : "A white light", "option2" : "A yellow light", "option3" : "A green light", "option4" : "A red light", "hint" : "A highly visible light, but not excessive", "answer" : "A red light"}, #4
+    10: {"question" : "What does reflective triangles placed by the side of the road mean?", "option1" : "Roadworks ahead", "option2" : "Breakdown or crash ahead", "option3" : "Special event ahead", "option4" : "One way bridge ahead\nand they have right of way", "hint" : "Think of signs that match situations", "answer" : "Breakdown or crash ahead"}, #2
 }
 
 Emergencies = { #'Emergencies' topic dictionary
@@ -305,22 +305,22 @@ Emergencies = { #'Emergencies' topic dictionary
     5: {"question" : "If you get flashed by oncoming traffic, where would you look?", "option1" : "Top left", "option2" : "Top right", "option3" : "Bottom left", "option4" : "Bottom right", "hint" : "Away from sources of light", "answer" : "Bottom left"}, #3
     6: {"question" : "What will happen if your car hits a body of water from a height?", "option1" : "You will float on the water", "option2" : "You will fall through the water", "option3" : "You will hit water like it was a solid", "option4" : "You will bounce off the water", "hint" : "Think about jumping into a swimming pool", "answer" : "You will hit water like it was a solid"}, #3
     7: {"question" : "If your car is sinking, how and when should you get out?", "option1" : "Open and escape through a window\nbefore the water is higher than the window", "option2" : "Escape through the boot once the car fills up", "option3" : "Break the front glass as the car is sinking", "option4" : "Use the doors once the car comes to a standstill", "hint" : "Think in terms of water pressure", "answer" : "Open and escape through a window\nbefore the water is higher than the window"}, #1
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    8: {"question" : "When should you use your hazard lights?", "option1" : "Reversing from a driveway when view is unclear", "option2" : "Your vehicle is a temporary hazard", "option3" : "To scare tailgaters off", "option4" : "You have parked on a yellow line", "hint" : "The answer is in the name", "answer" : "Your vehicle is a temporary hazard"}, #2
+    9: {"question" : "Driving past parked cars when a ball rolls out, what do you do?", "option1" : "Flash your headlights", "option2" : "Maintain speed and hit it", "option3" : "Accelerate past it", "option4" : "Slow and prepare to stop", "hint" : "What if a kid follows the ball?", "answer" : "Slow and prepare to stop"}, #4
+    10: {"question" : "What do you do if there are flashing lights outside of a fire station?", "option1" : "Slow down and prepare to stop", "option2" : "Stop until lights stop flashing", "option3" : "Accelerate past it", "option4" : "Go tell them they left the lights on", "hint" : "The path out should always be available", "answer" : "Stop until lights stop flashing"}, #2
 }
 
 Parking = { #'Parking' topic dictionary
     1: {"question" : "How far should you part from someone's driveway?", "option1" : "1 meter", "option2" : "2 meters", "option3" : "5 meters", "option4" : "0.5 meters", "hint" : "A decent distance, but not excessive", "answer" : "1 meter"}, #1
     2: {"question" : "Ethically, should you park very close behind someone else?", "option1" : "Yeah sure, no big deal", "option2" : "Only if they can drive out through the front", "option3" : "No, you should never", "option4" : "Only for smaller cars", "hint" : "Try to be thoughtful and think 'just in case'", "answer" : "Only if they can drive out through the front"}, #2
-    3: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    4: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    5: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    6: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    7: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    8: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    9: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
-    10: {"question" : "", "option1" : "", "option2" : "", "option3" : "", "option4" : "", "hint" : "", "answer" : ""}, #
+    3: {"question" : "Can you stop on a bus parking lane", "option1" : "Yes, if you are driving a bus", "option2" : "No, never", "option3" : "Only if there are no more parking spots", "option4" : "Only if your friends dare you to", "hint" : "Disregard what your friends say", "answer" : "Yes, if you are driving a bus"}, #1
+    4: {"question" : "When may you park your vehicle over a fire hydrant?", "option1" : "Anytime you want", "option2" : "Never should", "option3" : "Only if the vehicle can be moved", "option4" : "Only if you don't think fires will be happening", "hint" : "As long as it doesn't block it", "answer" : "Only if the vehicle can be moved"}, #3
+    5: {"question" : "What does a disability sign painted on the parking spot mean?", "option1" : "Park/stop here if you have mobility parking permit", "option2" : "Just another empty parking spot", "option3" : "If you have a broken leg", "option4" : "Just stopping for 5 minutes won't hurt", "hint" : "Evidence will tell", "answer" : "Park/stop here if you have mobility parking permit"}, #1
+    6: {"question" : "How close can you park from an intersection?", "option1" : "1 meter away", "option2" : "3 meters away", "option3" : "6 meters away", "option4" : "10 meters away", "hint" : "Far away", "answer" : "6 meters away"}, #3
+    7: {"question" : "Can you park on the right side of the road?", "option1" : "Only if there are marked bays", "option2" : "Never", "option3" : "Always", "option4" : "Only on a one way road", "hint" : "Yes, under specific circumstances", "answer" : "Only on a one way road"}, #4
+    8: {"question" : "What does a red x on a blue sign with 'ends' mean?", "option1" : "You can stop after you pass this sign", "option2" : "You can stop before the sign\nbut not after", "option3" : "The sign doesn't matter", "option4" : "You cannot stop until permission is given", "hint" : "What does x usually mean?", "answer" : "You can stop after you pass this sign"}, #1
+    9: {"question" : "Is it alright to park on someone else's driveway?", "option1" : "Only if permission is given", "option2" : "No never", "option3" : "Only if the owners aren't home", "option4" : "Yeah sure, its all public property", "hint" : "Don't be rude", "answer" : "Only if permission is given"}, #1
+    10: {"question" : "What happens if you park blocking someone's driveway?", "option1" : "The council is called and your car is moved", "option2" : "Your car is legally theirs now", "option3" : "The owners cannot do anything about it", "option4" : "Car won't be moved, you will be fined", "hint" : "No extreme measures will be taken", "answer" : "The council is called and your car is moved"}, #1
 }
 
 Road = { #'Road' topic dictionary
