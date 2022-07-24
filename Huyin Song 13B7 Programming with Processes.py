@@ -101,6 +101,9 @@ def quizpage(): #A function for the actual testing page, called from the topic p
     global btn_option4
     btn_option4 = Button(quiz, width = 45, height = 6, command = choice4)
     btn_option4.place(x = 400, y = 325)
+    global lbl_correctorwrong
+    lbl_correctorwrong = Label(quiz, width = 20, height = 4)
+    lbl_correctorwrong.place(x = 100, y = 450)
 
     global btn_quizproceed
     btn_quizproceed = Button(quiz, text = "Do you wish to proceed?", width = 25, height = 4, bg = "#67fcd0", command = quizpage) #A button for when the user answers a question, will bring them to next question
@@ -146,9 +149,11 @@ def choice1(): #Function for if the user clicked the first option
     if choice == topic[ques]["answer"]: #if user's choice/answer is equal/correct to the question's answer
         btn_option1.config(bg = "#10EE10") #Config the button pressed to green indicating correct choice
         correct += 1 #Set correct variable to correct + 1
+        lbl_correctorwrong.config(text = "Correct!") #A second source of whether choice is correct or wrong
     elif choice != topic[ques]["answer"]: #If user's choice is not equal to question's answer
         btn_option1.config(bg = "#EB270C") #Set the button pressed to a red colour indicating incorrect/wrong answer
         wrong += 1 #Set wrong variable to wrong + 1
+        lbl_correctorwrong.config(text = "Wrong!")
     btn_quizproceed.place(x = 275, y = 450) #Place the proceed to next question button
 
 def choice2(): #Function for second option, functions nearly identically to first option
@@ -160,9 +165,11 @@ def choice2(): #Function for second option, functions nearly identically to firs
     if choice == topic[ques]["answer"]:
         btn_option2.config(bg = "#10EE10")
         correct += 1
+        lbl_correctorwrong.config(text = "Correct!")
     elif choice != topic[ques]["answer"]:
         btn_option2.config(bg = "#EB270C")
         wrong += 1
+        lbl_correctorwrong.config(text = "Wrong!")
     btn_quizproceed.place(x = 275, y = 450)
 
 def choice3(): #3rd option
@@ -174,9 +181,11 @@ def choice3(): #3rd option
     if choice == topic[ques]["answer"]:
         btn_option3.config(bg = "#10EE10")
         correct += 1
+        lbl_correctorwrong.config(text = "Correct!")
     elif choice != topic[ques]["answer"]:
         btn_option3.config(bg = "#EB270C")
         wrong += 1
+        lbl_correctorwrong.config(text = "Wrong!")
     btn_quizproceed.place(x = 275, y = 450)
 
 def choice4(): #And 4th option
@@ -188,9 +197,11 @@ def choice4(): #And 4th option
     if choice == topic[ques]["answer"]:
         btn_option4.config(bg = "#10EE10")
         correct += 1
+        lbl_correctorwrong.config(text = "Correct!")
     elif choice != topic[ques]["answer"]:
         btn_option4.config(bg = "#EB270C")
         wrong += 1
+        lbl_correctorwrong.config(text = "Wrong!")
     btn_quizproceed.place(x = 275, y = 450)
 
 def progresswindow(): #Function for when progress button is clicked
