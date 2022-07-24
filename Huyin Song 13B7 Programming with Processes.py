@@ -2,7 +2,7 @@
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import*
- #Importing the GUI
+#Importing the GUI
 import random 
 #Importing random to use
 
@@ -35,7 +35,7 @@ def verifyage():
             #Places the established button, allowing the user to proceed
         elif userage >= 122:
             #If user's age is more or equal to 122
-            lbl_verifage.config(text = "Invalid input!\nThe highest recorded age of humans was 122 years old!")
+            lbl_verifage.config(text = "Not possible!\nThe highest recorded age of humans was 122 years old!")
             #Printing an invalid input message, user is impossibly old
     except ValueError: 
         #Try and except, this prevents a value error just in case the user inputs symbols or something not a integer
