@@ -2,11 +2,13 @@
 #Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import*
-#Importing the GUI
+#Importing the GUI functions
 import random 
-#Importing random to use
+#Importing random
 import os
+#Importing os
 import sys
+#Importing sys
 
 
 def verifyage():
@@ -351,8 +353,11 @@ def notes():
     lbl_notesavestatus.config(text = "Saved!")
     #Configures the save status label to display "Saved!" to let the user know their notes are saved
     with open(os.path.join(sys.path[0], 'user_notes.txt'), "w") as f:
+        #Opens a file called "user_notes.txt" located in the same folder directory as the program, opens to write.
         f.write(usernote)
+        #Writes into the file with the variable "usernote"
         f.close()
+        #Closes the file
 
 
 def quizfinish():
