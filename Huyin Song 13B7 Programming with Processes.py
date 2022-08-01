@@ -5,6 +5,8 @@ from tkinter import*
 #Importing the GUI
 import random 
 #Importing random to use
+import os
+import sys
 
 
 def verifyage():
@@ -348,6 +350,9 @@ def notes():
     #Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
     lbl_notesavestatus.config(text = "Saved!")
     #Configures the save status label to display "Saved!" to let the user know their notes are saved
+    with open(os.path.join(sys.path[0], 'user_notes.txt'), "w") as f:
+        f.write(usernote)
+        f.close()
 
 
 def quizfinish():
@@ -430,7 +435,7 @@ usernote = NONE
 General = { 
     #'General' topic dictionary
     1: {"question" : "What rule should you use to judge a safe following distance in wet or frosty conditions if driving a car?", "option1" : "Two-second rule", "option2" : "Four-second rule", "option3" : "100 meter rule", "option4" : "Six-second rule", "hint" : "The answer involves time", "answer" : "Four-second rule"}, #2
-    2: {"question" : "Your vehicle has a current Warrant of Fitness but a rear red stop light is not working. What should you do?", "option1" : "You can drive with it until your next WOF", "option2" : "You must fix it immediately", "option3" : "Only use the vehicle during daylight hours", "option4" : "You have 48 hours to drive until it needs fixing", "hint" : "Rear stop lights are crucial", "answer" : "You must fix it immediately"}, #2
+    2: {"question" : "Your vehicle has a current Warrant of Fitness but a rear red stop light is not working\nWhat should you do?", "option1" : "You can drive with it until your next WOF", "option2" : "You must fix it immediately", "option3" : "Only use the vehicle during daylight hours", "option4" : "You have 48 hours to drive until it needs fixing", "hint" : "Rear stop lights are crucial", "answer" : "You must fix it immediately"}, #2
     3: {"question" : "If you're under 20 and you're caught with any level of blood alcohol by the police, what is the minimum penalty?", "option1" : "$200 fine and 50 demerit points", "option2" : "Your licence will be suspended", "option3" : "$100 fine and 35 demerit points", "option4" : "Nothing on the first offence", "hint" : "Not either extremes", "answer" : "$200 fine and 50 demerit points"}, #1
     4: {"question" : "What does a blue sign with a person walking mean?", "option1" : "Dance classes ahead", "option2" : "No route for pedestrians", "option3" : "A route for motorists only", "option4" : "A route for pedestrians only", "hint" : "Definitely not 'Dance classes ahead'", "answer" : "A route for pedestrians only"}, #4
     5: {"question" : "When should you apply the four-second rule?", "option1" : "If your brakes are almost worn out", "option2" : "If the road is wet or frosty\nor you are towing a trailer", "option3" : "If you are travelling faster than 100km/h", "option4" : "Driving at night", "hint" : "When the road limits your abilities", "answer" : "If the road is wet or frosty\nor you are towing a trailer"}, #2
