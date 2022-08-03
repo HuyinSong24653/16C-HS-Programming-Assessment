@@ -2,13 +2,13 @@
 # Improved interactivity quiz as described in Critical Inquiry Assessment
 
 from tkinter import*
-#  Importing the GUI functions
+# Importing the GUI functions
 import random
-#  Importing random
+# Importing random
 import os
-#  Importing os
+# Importing os
 import sys
-#  Importing sys
+# Importing sys
 
 
 def verifyage():
@@ -21,17 +21,17 @@ def verifyage():
         # Getting the user's age from the entry box
         if userage <= 0:
             # If user's age is less or equal to 0
-            lbl_verifage.config(text = "Invalid input! You cannot be 0 or negative years old!")
+            lbl_verifage.config(text="Invalid input! You cannot be 0 or negative years old!")
             # Configs label to print user has invalid age
         elif userage > 0 and userage < 16:
             # If user's age is between 0 and 16
-            lbl_verifage.config(text = "You are not old enough to qualify!")
+            lbl_verifage.config(text="You are not old enough to qualify!")
             # Configs label to print user is too young to use program
         elif userage >= 16 and userage < 122:
             # If user's age is equal or more than 16, and between 16 to 122
-            lbl_verifage.config(text = "You are qualified to use my program!")
+            lbl_verifage.config(text="You are qualified to use my program!")
             # configs label to welcome the user, stating their qualified status
-            lbl_welcome = Label(verification, text = "{}, Welcome!".format(username))
+            lbl_welcome = Label(verification, text="{}, Welcome!".format(username))
             # Establishing a label that welcomes the user, using their username
             lbl_welcome.place(x=20, y=160)
             # Places it onto the GUI
@@ -39,11 +39,11 @@ def verifyage():
             # Places the established button, allowing the user to proceed
         elif userage >= 122:
             # If user's age is more or equal to 122
-            lbl_verifage.config(text = "Not possible!\nThe highest recorded age of humans was 122 years old!")
+            lbl_verifage.config(text="Not possible!\nThe highest recorded age of humans was 122 years old!")
             # Printing an invalid input message, user is impossibly old
     except ValueError:
         # Try and except, this prevents a value error just in case the user inputs symbols or something not a integer
-        lbl_verifage.config(text = "Invalid input! Please input an integer!")
+        lbl_verifage.config(text="Invalid input! Please input an integer!")
         # Configuring the label to help users recover from their typo
 
 
@@ -62,23 +62,23 @@ def selection():
     topicselect.geometry("375x475")
     # Setting the size
 
-    lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?\nChoose a topic then click proceed", font = ("Arial", 11))
+    lbl_quizselectwelcome = Label(topicselect, text="What topic would you like to be tested on?\nChoose a topic then click proceed", font=("Arial", 11))
     # Label asking the user to choose their topic
     lbl_quizselectwelcome.place(x=45, y=30)
     # Placing it, and so on with the other .place'es for the buttons
-    btn_general = Button(topicselect, text = "General", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(1))
+    btn_general = Button(topicselect, text="General", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(1))
     # Button for General, calls quiztopic function with argument as 1
     btn_general.place(x=25, y=85)
-    btn_emergencies = Button(topicselect, text = "Emergencies", width = 14, height = 3, font = ("Arial", 12), command = lambda: quiztopic(2))
+    btn_emergencies = Button(topicselect, text="Emergencies", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(2))
     # Button for Emergencies, calls quiztopic function with argument as 2, and so on for the other buttons
     btn_emergencies.place(x=200, y=85)
-    btn_parking=Button(topicselect, text="Parking", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(3))
+    btn_parking = Button(topicselect, text="Parking", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(3))
     btn_parking.place(x=25, y=180)
-    btn_road=Button(topicselect, text="Road", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(4))
+    btn_road = Button(topicselect, text="Road", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(4))
     btn_road.place(x=200, y=180)
-    btn_rules=Button(topicselect, text="Rules", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(5))
+    btn_rules = Button(topicselect, text="Rules", width=14, height=3, font=("Arial", 12), command=lambda: quiztopic(5))
     btn_rules.place(x=25, y=275)
-    btn_topicproceed=Button(topicselect, text="Proceed with quiz", width=14, height=3, font=("Arial", 12), bg="#67fcd0", command=quizpage)
+    btn_topicproceed = Button(topicselect, text="Proceed with quiz", width=14, height=3, font=("Arial", 12), bg="#67fcd0", command=quizpage)
     # Establishing a proceeding button for the user once topic is selected, calls quizpage function
 
     if topicproceedvariable == 1:
@@ -91,29 +91,29 @@ def quiztopic(arg):
     # quiztopic function called from topic selection buttons, takes argument
     global topicproceedvariable
     # Setting topicproceedvariable as global to avoid error
-    topicproceedvariable=1
+    topicproceedvariable = 1
     # setting topicproceedvariable as 1
     global topic
     global topicname
     if arg == 1:
         # If argument is 1 (user clicked General topic)
-        topic=General
+        topic = General
         # Set topic as 1 (for General)
-        topicname="General"
+        topicname = "General"
     elif arg == 2:
         # If argument is 2 (user clicked Emergencies topic), and so on for other topics
-        topic=Emergencies
+        topic = Emergencies
         # Set topic as Emergencies
-        topicname="Emergencies"
+        topicname = "Emergencies"
     elif arg == 3:
-        topic=Parking
-        topicname="Parking"
+        topic = Parking
+        topicname = "Parking"
     elif arg == 4:
-        topic=Road
-        topicname="Road"
+        topic = Road
+        topicname = "Road"
     elif arg == 5:
-        topic=Rules
-        topicname="Rules"
+        topic = Rules
+        topicname = "Rules"
     topicselect.destroy()
     # The program destroys the old topic selection window
     selection()
@@ -134,73 +134,74 @@ def quizpage():
     # Setting the sizes
 
     global btn_progress
-    btn_progress=Button(quiz, text="Progress", font=("Arial", 18), width=10, height=1, command=progresswindow)
+    btn_progress = Button(quiz, text="Progress", font=("Arial", 18), width=10, height=1, command=progresswindow)
     # Button for the user, will show current quiz progress
     btn_progress.place(x=25, y=20)
     # Places it at the top of the GUI
-    btn_notes=Button(quiz, text="Notes", font=("Arial", 18), width=10, height=1, command=noteswindow)
+    btn_notes = Button(quiz, text="Notes", font=("Arial", 18), width=10, height=1, command=noteswindow)
     # Notes button, will call noteswindow function to create new window for the user's notes
     btn_notes.place(x=205, y=20)
     # Placing it and so on...
-    btn_hint=Button(quiz, text="Hint", font=("Arial", 18), width=10, height=1, command=hintwindow)
+    btn_hint = Button(quiz, text="Hint", font=("Arial", 18), width=10, height=1, command=hintwindow)
     # Hints window, calls the hintwindow function which will give a hint on the current question in a small hint window
     btn_hint.place(x=385, y=20)
-    btn_endquiz=Button(quiz, text="End quiz", font=("Arial", 18), width=10, height=1, command=quizfinish)
+    btn_endquiz = Button(quiz, text="End quiz", font=("Arial", 18), width=10, height=1, command=quizfinish)
     # A button for the user to end the quiz prior to quiz completion
     btn_endquiz.place(x=565, y=20)
-    lbl_question=Label(quiz, width=64, height=3, font=("Arial", 15), relief="groove")
+    lbl_question = Label(quiz, width=64, height=3, font=("Arial", 15), relief="groove")
     # A label for where the question will go
     lbl_question.place(x=18, y=100)
-    global btn_option1 # Setting global so I can edit later
-    btn_option1=Button(quiz, width=45, height=6, command=choice1)
+    global btn_option1
+    # Setting global so I can edit later
+    btn_option1 = Button(quiz, width=45, height=6, command=choice1)
     # A button for the user's first option
     btn_option1.place(x=20, y=200)
     global btn_option2
-    btn_option2=Button(quiz, width=45, height=6, command=choice2)
+    btn_option2 = Button(quiz, width=45, height=6, command=choice2)
     # A button for the user's second option, and so on...
     btn_option2.place(x=400, y=200)
     global btn_option3
-    btn_option3=Button(quiz, width=45, height=6, command=choice3)
+    btn_option3 = Button(quiz, width=45, height=6, command=choice3)
     btn_option3.place(x=20, y=325)
     global btn_option4
-    btn_option4=Button(quiz, width=45, height=6, command=choice4)
+    btn_option4 = Button(quiz, width=45, height=6, command=choice4)
     btn_option4.place(x=400, y=325)
     global lbl_correctorwrong
-    lbl_correctorwrong=Label(quiz, width=20, height=4)
+    lbl_correctorwrong = Label(quiz, width=20, height=4)
     lbl_correctorwrong.place(x=100, y=450)
 
     global btn_quizproceed
-    btn_quizproceed=Button(quiz, text="Do you wish to proceed?", width=25, height=4, bg="#67fcd0", command=quizpage)
+    btn_quizproceed = Button(quiz, text="Do you wish to proceed?", width=25, height=4, bg="#67fcd0", command=quizpage)
     # A button for when the user answers a question, will bring them to next question
-    lbl_quizend=Label(quiz, text="The quiz is over\nplease end the quiz")
+    lbl_quizend = Label(quiz, text="The quiz is over\nplease end the quiz")
 
     global ques
     if progress == 1:
         # If progress == 1 (first question)
-        ques=quesorder[0]
+        ques = quesorder[0]
         # Set question to the first value in the shuffled list
     elif progress == 2:
         # If progress == 2 (second question)
-        ques=quesorder[1]
+        ques = quesorder[1]
         # Set question to the second value in the shuffled list
     elif progress == 3:
         # And so on...
-        ques=quesorder[2]
+        ques = quesorder[2]
         # And so on...
     elif progress == 4:
-        ques=quesorder[3]
+        ques = quesorder[3]
     elif progress == 5:
-        ques=quesorder[4]
+        ques = quesorder[4]
     elif progress == 6:
-        ques=quesorder[5]
+        ques = quesorder[5]
     elif progress == 7:
-        ques=quesorder[6]
+        ques = quesorder[6]
     elif progress == 8:
-        ques=quesorder[7]
+        ques = quesorder[7]
     elif progress == 9:
-        ques=quesorder[8]
+        ques = quesorder[8]
     elif progress == 10:
-        ques=quesorder[9]
+        ques = quesorder[9]
     elif progress > 10:
         lbl_quizend.place(x=500, y=465)
 
@@ -219,7 +220,7 @@ def choice1():
     global progress
     progress += 1
     # Set progress to progress + 1
-    choice=topic[ques]["option1"]
+    choice = topic[ques]["option1"]
     # choice variable is equal to the first options's values
     global correct
     global wrong
@@ -246,7 +247,7 @@ def choice2():
     # Function for second option, functions nearly identically to first option
     global progress
     progress += 1
-    choice=topic[ques]["option2"]
+    choice = topic[ques]["option2"]
     global correct
     global wrong
     if choice == topic[ques]["answer"]:
@@ -264,7 +265,7 @@ def choice3():
     # 3rd option
     global progress
     progress += 1
-    choice=topic[ques]["option3"]
+    choice = topic[ques]["option3"]
     global correct
     global wrong
     if choice == topic[ques]["answer"]:
@@ -282,7 +283,7 @@ def choice4():
     # And 4th option
     global progress
     progress += 1
-    choice=topic[ques]["option4"]
+    choice = topic[ques]["option4"]
     global correct
     global wrong
     if choice == topic[ques]["answer"]:
@@ -310,7 +311,7 @@ def hintwindow():
     # Naming the hint GUI window as "Hint!"
     hintpopup.geometry("300x35")
     # Setting the size of the window
-    lbl_hint=Label(hintpopup)
+    lbl_hint = Label(hintpopup)
     # Establishing a label
     lbl_hint.pack()
     # Packing the label in
@@ -330,17 +331,17 @@ def noteswindow():
     # Setting the size of the window
     global ent_notes
     # Setting the entry containing the user's notes as global, will be used later to be viewed by the user
-    ent_notes=Text(notespopup, font=("Arial", 12))
+    ent_notes = Text(notespopup, font=("Arial", 12))
     # Setting the entry as Text onto the notes window, with Arial as the font and 12 as the font size
     ent_notes.place(x=2, y=2, width=445, height=295)
     # Placing it, and setting the appropriate width and height sufficient for the user's notes
-    btn_savenotes=Button(notespopup, text="Save current notes", bg="#67fcd0", command=notes)
+    btn_savenotes = Button(notespopup, text="Save current notes", bg="#67fcd0", command=notes)
     # Establishing a button for the user to save their currently written notes, calls 'notes' function upon click
     btn_savenotes.place(x=160, y=310)
     # and placing it onto the notes window
     global lbl_notesavestatus
     # Setting the notesavestatus as global as it will be used in the 'notes' function called
-    lbl_notesavestatus=Label(notespopup)
+    lbl_notesavestatus = Label(notespopup)
     # Establishing a blank label in notes window, will be used to show note's save status
     lbl_notesavestatus.place(x=300, y=313)
     # Placing it in a easy to see spot
@@ -349,7 +350,7 @@ def noteswindow():
 def notes():
     # notes function, called when the user clicked to save their notes
     global usernote
-    usernote=str(ent_notes.get("1.0", "end-1c"))
+    usernote = str(ent_notes.get("1.0", "end-1c"))
     # Takes the user's written notes starting from line 1, 0th character until the end and minusing 1 character off (the useless space), and saves it as 'usernote'
     lbl_notesavestatus.config(text="Saved!")
     # Configures the save status label to display "Saved!" to let the user know their notes are saved
@@ -370,22 +371,22 @@ def quizfinish():
     quizending.geometry("410x365")
     # Setting size
 
-    lbl_endtopic=Label(quizending, text="Topic tested on: {}".format(topicname), width=25, height=2, bg="#67fcd0", relief="groove")
+    lbl_endtopic = Label(quizending, text="Topic tested on: {}".format(topicname), width=25, height=2, bg="#67fcd0", relief="groove")
     # Label displaying the topic the user just tested on
     lbl_endtopic.place(x=10, y=10)
-    lbl_endprogress=Label(quizending, text="Progress: {}/10".format(progress), width=25, height=2, bg="#67fcd0", relief="groove")
+    lbl_endprogress = Label(quizending, text="Progress: {}/10".format(progress), width=25, height=2, bg="#67fcd0", relief="groove")
     # Displays the progress out of 10 questions
     lbl_endprogress.place(x=220, y=10)
-    lbl_endcorrect=Label(quizending, text="Num. Correct answers: {}/10".format(correct), width=25, height=2, bg="#67fcd0", relief="groove")
+    lbl_endcorrect = Label(quizending, text="Num. Correct answers: {}/10".format(correct), width=25, height=2, bg="#67fcd0", relief="groove")
     # Displays the number of correct answers out of 10 questions
     lbl_endcorrect.place(x=10, y=70)
-    lbl_endwrong=Label(quizending, text="Num. Wrong answers: {}/10".format(wrong), width=25, height=2, bg="#67fcd0", relief="groove")
+    lbl_endwrong = Label(quizending, text="Num. Wrong answers: {}/10".format(wrong), width=25, height=2, bg="#67fcd0", relief="groove")
     # Shows number of wrong answers out of 10 questions
     lbl_endwrong.place(x=220, y=70)
-    lbl_endhintsused=Label(quizending, text="Num. Hints used: {}".format(hintuses), width=25, height=2, bg="#67fcd0", relief="groove")
+    lbl_endhintsused = Label(quizending, text="Num. Hints used: {}".format(hintuses), width=25, height=2, bg="#67fcd0", relief="groove")
     # Shows the number of hints used throughout their quiz
     lbl_endhintsused.place(x=10, y=130)
-    lbl_endnotes=Label(quizending, text=usernote, bg="#67fcd0", font=("Arial", 10), width=48, height=10, wraplength=380, justify="center", relief="groove")
+    lbl_endnotes = Label(quizending, text=usernote, bg="#67fcd0", font=("Arial", 10), width=48, height=10, wraplength=380, justify="center", relief="groove")
     # Displays the notes written during their quiz, will display "none" if nothing were wrote
     lbl_endnotes.place(x=10, y=190)
 
@@ -397,33 +398,33 @@ verification.title("Verifications window")
 verification.geometry("350x350")
 # Setting the size of the GUI window
 
-lbl_verifage=Label(verification)
+lbl_verifage = Label(verification)
 # Label used to give information regarding verification, is empty now but is configured once verification button is pressed
 lbl_verifage.place(x=20, y=200)
 
-lbl_name=Label(verification, text="What is your name?")
+lbl_name = Label(verification, text="What is your name?")
 # Asking user's name
 lbl_name.place(x=20, y=20)
-lbl_age=Label(verification, text="What is your age?")
+lbl_age = Label(verification, text="What is your age?")
 # Asking user's age
 lbl_age.place(x=20, y=60)
-ent_name=Entry(verification)
+ent_name = Entry(verification)
 # A entry box for user to input their name
 ent_name.place(x=150, y=20)
-ent_age=Entry(verification)
+ent_age = Entry(verification)
 # Then their age
 ent_age.place(x=150, y=60)
-btn_age=Button(verification, text="Verify your age!", bg="#67fcd0", command=verifyage)
+btn_age = Button(verification, text="Verify your age!", bg="#67fcd0", command=verifyage)
 # A button for the user's to verify after they have inputted name and age
 btn_age.place(x=100, y=100)
 
-btn_verifproceed=Button(verification, text="Proceed with program", bg="#67fcd0", command=selection)
+btn_verifproceed = Button(verification, text="Proceed with program", bg="#67fcd0", command=selection)
 # A button note present yet, this appears after name and age verified, takes user to topic selection
 
-topicproceedvariable=0
+topicproceedvariable = 0
 # Used this to fix some looping logic, starts at 0 and will update to 1
 
-quesorder=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+quesorder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # A list of questions
 random.shuffle(quesorder)
 # Using random to shuffle the list of questions, making questions randomly generated
