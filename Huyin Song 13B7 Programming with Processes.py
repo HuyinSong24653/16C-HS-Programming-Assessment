@@ -62,7 +62,7 @@ def selection():
     topicselect.geometry("375x475") 
     #Setting the size
 
-    lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?", font = ("Arial", 11)) 
+    lbl_quizselectwelcome = Label(topicselect, text = "What topic would you like to be tested on?\nChoose a topic then click proceed", font = ("Arial", 11)) 
     #Label asking the user to choose their topic
     lbl_quizselectwelcome.place(x = 45, y = 30) 
     #Placing it, and so on with the other .place'es for the buttons
